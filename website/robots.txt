@@ -1,0 +1,8 @@
+# Bösing Dental Landingpage, Vorlage
+# Vor dem Livegang die echte Domain in der Sitemap-Zeile eintragen.
+User-agent: *
+Allow: /
+Disallow: /impressum.html
+Disallow: /datenschutz.html
+
+Sitemap: https://DOMAIN-FOLGT.de/sitemap.xml

@@ -1,0 +1,377 @@
+/* ============================================================================
+   Bösing Dental GmbH & Co. KG — Landingpage Praxisgewinnung
+   Entwurf: AO Consulting GmbH
+   Farbwelt aus dem bestehenden Auftritt boesing-dental.de abgeleitet.
+   ========================================================================= */
+
+:root{
+  --cyan:#29abe2;
+  --cyan-dunkel:#0e7ba8;
+  --cyan-tief:#0a5f83;
+  --orange:#f7941d;
+  --orange-dunkel:#c96f00;
+  --gelb:#ffd200;
+  --gruen:#39b54a;
+  --gruen-dunkel:#2b8c39;
+
+  --ink:#26343d;
+  --ink-weich:#5a6b76;
+  --linie:#dbe6ed;
+  --flaeche:#f2f8fb;
+  --flaeche-tief:#e6f2f8;
+  --weiss:#fff;
+
+  --hinweis:#fff4c2;
+  --hinweis-rand:#e3c000;
+
+  --breit:1220px;
+  --breit-kopf:1400px;
+  --radius:18px;
+  --radius-klein:10px;
+  --schatten:0 10px 30px rgba(14,123,168,.10);
+  --schatten-stark:0 18px 46px rgba(14,123,168,.16);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+section[id],main[id]{scroll-margin-top:104px}
+body{
+  margin:0;
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:1.0625rem;            /* keine Pixelangabe, damit die Schriftskalierung greift */
+  line-height:1.65;
+  color:var(--ink);
+  background:var(--weiss);
+  overflow-x:hidden;
+}
+img,video{max-width:100%;height:auto}
+picture{display:block}
+h1,h2,h3,h4{line-height:1.18;margin:0 0 .6em;font-weight:800;letter-spacing:-.02em}
+h1{font-size:clamp(2rem,4.6vw,3.35rem)}
+h2{font-size:clamp(1.55rem,3vw,2.35rem)}
+h3{font-size:clamp(1.12rem,1.5vw,1.35rem);font-weight:700}
+p{margin:0 0 1em}
+a{color:var(--cyan-dunkel)}
+a:hover,a:focus-visible{color:var(--cyan-tief)}
+ul{margin:0 0 1em;padding-left:1.15em}
+strong{font-weight:700}
+
+/* Fokus */
+:focus-visible{outline:3px solid var(--cyan-dunkel);outline-offset:3px;border-radius:4px}
+:focus:not(:focus-visible){outline:none}
+.auf-dunkel :focus-visible{outline-color:#fff}
+
+/* Sprunglinks */
+.sprung{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;
+  padding:.7rem 1.1rem;border-radius:0 0 var(--radius-klein) 0;text-decoration:none;font-weight:700}
+.sprung:focus{left:0}
+.sprung:focus,.sprung:hover{color:#fff}
+
+/* Layout */
+.huelle{width:100%;max-width:var(--breit);margin:0 auto;padding:0 1.25rem}
+.huelle-kopf{width:100%;max-width:var(--breit-kopf);margin:0 auto;padding:0 1.25rem}
+section{padding:clamp(3rem,6vw,5.5rem) 0}
+.hell{background:var(--flaeche)}
+.weiss{background:var(--weiss)}
+.mitte{text-align:center}
+.kopfzeile-block{max-width:46rem;margin:0 auto clamp(2rem,4vw,3rem)}
+.kopfzeile-block.links{margin-left:0;text-align:left}
+.augbraue{display:inline-block;font-size:.8rem;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--cyan-dunkel);margin-bottom:.7rem}
+.lead{font-size:1.1rem;color:var(--ink-weich)}
+
+/* ------------------------------------------------------------------ Kopf */
+body>header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--linie)}
+.kopf{display:flex;align-items:center;gap:1.5rem;min-height:88px}
+.marke{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);font-weight:800;
+  font-size:1.15rem;white-space:nowrap;letter-spacing:-.02em}
+.marke:hover,.marke:focus-visible{color:var(--cyan-dunkel)}
+.marke svg{flex:0 0 auto}
+.marke picture{display:block}
+.marke img{height:58px;width:auto;display:block}
+.kopf-nav{margin-left:auto;display:flex;align-items:center;gap:1.4rem}
+.kopf-nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:600;font-size:.98rem}
+.kopf-nav a:hover,.kopf-nav a:focus-visible{color:var(--cyan-dunkel)}
+.kopf-nav a.knopf-haupt{color:#fff}
+.kopf-nav a.knopf-haupt:hover,.kopf-nav a.knopf-haupt:focus-visible{color:#fff;background:var(--cyan-tief)}
+.kopf-tel{display:inline-flex;align-items:center;gap:.45rem;white-space:nowrap;font-weight:700;text-decoration:none}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--linie);border-radius:12px;
+  width:46px;height:42px;cursor:pointer;align-items:center;justify-content:center}
+.burger span{display:block;width:20px;height:2px;background:var(--ink);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--ink)}
+.burger span::before{top:-6px}
+.burger span::after{top:6px}
+.burger:hover,.burger:focus-visible{background:var(--flaeche-tief)}
+
+/* Knopf */
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
+  padding:.85rem 1.5rem;border-radius:999px;font-weight:800;text-decoration:none;border:2px solid transparent;
+  cursor:pointer;font-size:1rem;font-family:inherit;transition:transform .15s ease,background .15s ease}
+.knopf-haupt{background:var(--cyan-dunkel);color:#fff}
+.knopf-haupt:hover,.knopf-haupt:focus-visible{background:var(--cyan-tief);color:#fff;transform:translateY(-1px)}
+.knopf-zweit{background:#fff;color:var(--cyan-tief);border-color:var(--cyan-dunkel)}
+.knopf-zweit:hover,.knopf-zweit:focus-visible{background:var(--cyan-dunkel);color:#fff}
+.knopf-hell{background:#fff;color:var(--cyan-tief)}
+.knopf-hell:hover,.knopf-hell:focus-visible{background:var(--gelb);color:var(--ink)}
+.knopf-klein{padding:.6rem 1.1rem;font-size:.94rem}
+
+/* ------------------------------------------------------------------ Hero */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(1200px 520px at 85% -10%,rgba(41,171,226,.16),transparent 60%),
+  radial-gradient(760px 420px at 8% 110%,rgba(247,148,29,.12),transparent 62%),
+  linear-gradient(180deg,#fbfdfe 0%,#f2f8fb 100%)}
+.hero-raster{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4vw,3.5rem);align-items:center;
+  padding:clamp(2.5rem,5vw,4.5rem) 0}
+.hero h1 span{color:var(--cyan-dunkel)}
+.hero-lead{font-size:clamp(1.05rem,1.5vw,1.22rem);color:var(--ink-weich);max-width:34rem}
+.hero-knoepfe{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.6rem 0 1.1rem}
+.hero-mini{font-size:.92rem;color:var(--ink-weich);margin:0}
+/* ------------------------------------------------ Google-Bewertung */
+.google-punkt{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none;background:#fff;
+  border:1px solid var(--linie);border-radius:999px;padding:.5rem 1rem .5rem .6rem;
+  box-shadow:0 2px 10px rgba(14,123,168,.07);margin-top:1.1rem;color:var(--ink)}
+.google-punkt:hover,.google-punkt:focus-visible{border-color:var(--cyan-dunkel);color:var(--ink);
+  box-shadow:0 6px 18px rgba(14,123,168,.14)}
+.google-g{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;
+  color:#4285F4;border:1px solid var(--linie);flex:none;font-size:1.05rem;background:#fff}
+.sterne{position:relative;display:inline-block;line-height:1;font-size:1rem;letter-spacing:2px;
+  color:#d7dfe5;white-space:nowrap}
+.sterne-gold{position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap;color:#f5a623}
+.google-txt{display:block;font-size:.83rem;color:var(--ink-weich);margin-top:.2rem;white-space:nowrap}
+.google-txt b{color:var(--ink)}
+
+/* ------------------------------------- feste Handy-Leiste mit den CTA */
+.handy-leiste{display:none}
+@media (max-width:820px){
+  .handy-leiste{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:48;gap:.6rem;
+    padding:.6rem .8rem calc(.6rem + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--linie);
+    box-shadow:0 -6px 20px rgba(14,123,168,.10)}
+  .handy-leiste .knopf{flex:1;justify-content:center;padding:.8rem .6rem;font-size:.98rem}
+  body{padding-bottom:72px}
+  .bf-knopf{bottom:82px!important}
+}
+
+.anker-reihe{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linie);
+  border:1px solid var(--linie);border-radius:var(--radius);overflow:hidden;margin-top:clamp(1.5rem,3vw,2.5rem)}
+.anker{background:#fff;padding:1.05rem 1rem;text-align:center}
+.anker b{display:block;font-size:1.45rem;line-height:1.2;color:var(--cyan-dunkel);letter-spacing:-.02em}
+.anker span{display:block;font-size:.86rem;color:var(--ink-weich);line-height:1.35}
+.bogen{position:absolute;inset:auto -6% -30% auto;width:520px;height:520px;border-radius:50%;
+  border:36px solid rgba(41,171,226,.10);pointer-events:none}
+
+/* ----------------------------------------------------- echte Bilder */
+.bild{position:relative;overflow:hidden;border-radius:var(--radius);aspect-ratio:16/10;background:var(--flaeche-tief)}
+.bild.breit{aspect-ratio:21/9}
+.bild.quadrat{aspect-ratio:1/1}
+.bild.hoch{aspect-ratio:3/4}
+.bild picture,.bild img{display:block;width:100%;height:100%;object-fit:cover}
+.karte.leistung .bild,.person .bild{border-radius:0}
+.bildunter{margin:.55rem 0 0;font-size:.82rem;color:var(--ink-weich)}
+
+/* -------------------------------------------------- Bildplatzhalter */
+.bildplatz{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.4rem;text-align:center;background:
+  linear-gradient(135deg,rgba(41,171,226,.10),rgba(247,148,29,.10));
+  border:2px dashed rgba(14,123,168,.35);border-radius:var(--radius);color:var(--cyan-tief);
+  padding:1.25rem;min-height:180px;min-width:0;aspect-ratio:16/10;overflow:hidden}
+.bildplatz.hoch{aspect-ratio:3/4}
+.bildplatz.breit{aspect-ratio:21/9;min-height:0}
+.bildplatz.quadrat{aspect-ratio:1/1}
+.bildplatz b{font-size:.95rem;font-weight:800;line-height:1.3}
+.bildplatz small{font-size:.78rem;color:var(--ink-weich);letter-spacing:.04em;text-transform:uppercase;font-weight:700}
+.bildplatz svg{opacity:.5}
+
+/* ------------------------------------------------------------------ Video */
+.video-block{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:center}
+.video-rahmen{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--schatten-stark);background:#0b2330}
+.video-rahmen .bildplatz{border-radius:0;border:none;min-height:0;aspect-ratio:16/9;
+  background:linear-gradient(135deg,#0b2330,#134a63);color:#dff1f9;
+  justify-content:flex-end;padding-bottom:1.1rem}
+.video-rahmen .bildplatz small{color:rgba(255,255,255,.7)}
+.abspielen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  border:none;background:transparent;cursor:pointer}
+.abspielen span{display:flex;align-items:center;justify-content:center;width:78px;height:78px;border-radius:50%;
+  background:rgba(255,255,255,.92);box-shadow:0 8px 26px rgba(0,0,0,.28)}
+.abspielen span svg{fill:var(--cyan-tief);margin-left:4px}
+.abspielen:hover span,.abspielen:focus-visible span{background:var(--gelb)}
+.abspielen:hover span svg,.abspielen:focus-visible span svg{fill:var(--ink)}
+.video-hinweis{margin:.55rem 0 0;font-size:.82rem;color:var(--ink-weich)}
+.video-text ul{list-style:none;padding:0;margin:1rem 0 0}
+.video-text li{position:relative;padding-left:1.7rem;margin-bottom:.55rem}
+.video-text li::before{content:"";position:absolute;left:0;top:.55em;width:.7rem;height:.7rem;border-radius:3px;
+  background:var(--orange)}
+
+/* ------------------------------------------------------------------ Karten */
+.raster{display:grid;gap:1.25rem}
+.raster-2{grid-template-columns:repeat(2,1fr)}
+.raster-3{grid-template-columns:repeat(3,1fr)}
+.raster-4{grid-template-columns:repeat(4,1fr)}
+.karte{background:#fff;border:1px solid var(--linie);border-radius:var(--radius);padding:1.5rem;
+  box-shadow:0 2px 10px rgba(14,123,168,.05)}
+.karte h3{margin-bottom:.4rem}
+.karte p:last-child{margin-bottom:0}
+.karte-symbol{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:14px;
+  background:var(--flaeche-tief);margin-bottom:.9rem}
+.karte-symbol svg{stroke:var(--cyan-dunkel);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.leistung{overflow:hidden;padding:0;display:flex;flex-direction:column}
+.leistung .bildplatz{border:none;border-radius:0;aspect-ratio:16/10;min-height:0}
+.leistung-text{padding:1.25rem 1.4rem 1.5rem}
+.leistung-text h3{margin-bottom:.35rem}
+.leistung-text p{margin:0;font-size:.97rem;color:var(--ink-weich)}
+
+/* ------------------------------------------------------------------ Ablauf */
+.ablauf{counter-reset:schritt;display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.schritt{position:relative;background:#fff;border:1px solid var(--linie);border-radius:var(--radius);
+  padding:2.4rem 1.35rem 1.5rem}
+.schritt::before{counter-increment:schritt;content:counter(schritt);position:absolute;top:-18px;left:1.35rem;
+  width:44px;height:44px;border-radius:50%;background:var(--cyan-dunkel);color:#fff;font-weight:800;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:var(--schatten)}
+.schritt h3{font-size:1.08rem}
+.schritt p{margin:0;font-size:.96rem;color:var(--ink-weich)}
+
+/* ------------------------------------------------------------------ Zitate */
+.zitate{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1.5rem}
+.zitat{background:#fff;border:1px solid var(--linie);border-left:5px solid var(--orange);
+  border-radius:var(--radius-klein);padding:1.35rem}
+.zitat p{font-style:italic;margin-bottom:.7rem}
+.zitat cite{font-style:normal;font-weight:700;font-size:.92rem;color:var(--cyan-tief)}
+
+/* ------------------------------------------------------------------ Region */
+.region{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:center}
+.region>*{min-width:0}
+.raster>*,.hero-raster>*,.video-block>*,.kontakt-raster>*,.gruen-block>*{min-width:0}
+.orte{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:1.2rem 0 0;list-style:none}
+.orte li{background:#fff;border:1px solid var(--linie);border-radius:999px;padding:.35rem .9rem;font-size:.9rem;font-weight:600}
+.kontaktdaten{display:grid;gap:.35rem;margin-top:1.3rem;font-size:.98rem}
+.kontaktdaten b{display:block;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-weich)}
+
+/* ------------------------------------------------------------------ Team */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.person{background:#fff;border:1px solid var(--linie);border-radius:var(--radius);overflow:hidden}
+.person .bildplatz{border:none;border-radius:0;aspect-ratio:4/3;min-height:0}
+.person-text{padding:1.1rem 1.3rem 1.35rem}
+.person-text h3{margin:0 0 .15rem;font-size:1.05rem}
+.person-text p{margin:0;font-size:.93rem;color:var(--ink-weich)}
+
+/* ------------------------------------------------------------------ Nachhaltigkeit */
+.gruen-block{background:linear-gradient(135deg,#eaf7ec,#f2f8fb);border:1px solid #cfe9d4;border-radius:var(--radius);
+  padding:clamp(1.5rem,3vw,2.5rem);display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center}
+.gruen-block.einspaltig{grid-template-columns:1fr;max-width:52rem;margin:0 auto}
+.preise{display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;padding:0;margin:1rem 0 0}
+.preise li{background:#fff;border:1px solid #cfe9d4;border-radius:var(--radius-klein);padding:.5rem .9rem;
+  font-size:.9rem;font-weight:700;color:var(--gruen-dunkel)}
+
+/* ------------------------------------------------------------------ FAQ */
+.faq{max-width:52rem;margin:0 auto}
+.faq details{background:#fff;border:1px solid var(--linie);border-radius:var(--radius-klein);margin-bottom:.7rem}
+.faq summary{cursor:pointer;padding:1.05rem 3rem 1.05rem 1.2rem;font-weight:700;position:relative;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary h3{font:inherit;color:inherit;letter-spacing:inherit;margin:0;display:inline}
+.faq summary::after{content:"";position:absolute;right:1.2rem;top:1.35rem;width:10px;height:10px;
+  border-right:2.5px solid var(--cyan-dunkel);border-bottom:2.5px solid var(--cyan-dunkel);
+  transform:rotate(45deg);transition:transform .2s ease}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq summary:hover,.faq summary:focus-visible{background:var(--flaeche);color:var(--cyan-tief)}
+.faq .antwort{padding:0 1.2rem 1.2rem;color:var(--ink-weich)}
+.faq .antwort p:last-child{margin-bottom:0}
+
+/* ------------------------------------------------------------------ Formular */
+.kontakt{background:linear-gradient(160deg,#0a5f83 0%,#0e7ba8 55%,#29abe2 100%);color:#fff}
+.kontakt h2,.kontakt h3{color:#fff}
+.kontakt-raster{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:start}
+.kontakt-text p{color:rgba(255,255,255,.9)}
+.kontakt-text ul{list-style:none;padding:0;margin:1.2rem 0 0}
+.kontakt-text li{position:relative;padding-left:1.8rem;margin-bottom:.6rem;color:rgba(255,255,255,.92)}
+.kontakt-text li::before{content:"";position:absolute;left:0;top:.45em;width:1rem;height:.55rem;
+  border-left:2.5px solid var(--gelb);border-bottom:2.5px solid var(--gelb);transform:rotate(-45deg)}
+.formular{background:#fff;border-radius:var(--radius);padding:clamp(1.35rem,2.5vw,2rem);box-shadow:var(--schatten-stark);color:var(--ink)}
+.feld{margin-bottom:1rem}
+.feld-paar{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+label{display:block;font-weight:700;font-size:.92rem;margin-bottom:.35rem}
+label .pflicht{color:var(--orange-dunkel)}
+input,select,textarea{width:100%;font-family:inherit;font-size:1rem;padding:.75rem .9rem;border:1.5px solid var(--linie);
+  border-radius:var(--radius-klein);background:#fff;color:var(--ink)}
+input:hover,select:hover,textarea:hover{border-color:var(--cyan)}
+textarea{min-height:110px;resize:vertical}
+.zustimmung{display:flex;gap:.7rem;align-items:flex-start;font-weight:500;font-size:.92rem;margin:1rem 0}
+.zustimmung input{width:1.15rem;height:1.15rem;flex:0 0 auto;margin-top:.2rem}
+.fehler{color:#b3261e;font-size:.86rem;margin:.3rem 0 0;display:none;font-weight:600}
+.feld.hat-fehler input,.feld.hat-fehler textarea,.feld.hat-fehler select{border-color:#b3261e}
+.feld.hat-fehler .fehler,.zustimmung-block.hat-fehler .fehler{display:block}
+.danke{text-align:center;padding:1.5rem .5rem}
+.danke svg{margin-bottom:.8rem}
+.formular-fuss{font-size:.82rem;color:var(--ink-weich);margin:.9rem 0 0}
+
+/* ------------------------------------------------------------------ Fuß */
+body>footer{background:var(--ink);color:rgba(255,255,255,.78);padding:3rem 0 2rem;font-size:.95rem}
+body>footer h3{color:#fff;font-size:1rem;margin-bottom:.7rem}
+.fuss-raster{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem}
+body>footer a{color:rgba(255,255,255,.85);text-decoration:none}
+body>footer a:hover,body>footer a:focus-visible{color:var(--gelb)}
+.fuss-liste{list-style:none;padding:0;margin:0}
+.soz{display:flex;gap:.6rem;margin-top:1.1rem}
+.soz a{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.soz a:hover,.soz a:focus-visible{background:var(--gelb);color:var(--ink);border-color:var(--gelb)}
+.soz svg{width:20px;height:20px;fill:currentColor;display:block}
+.fuss-liste li{margin-bottom:.4rem}
+.fuss-unten{border-top:1px solid rgba(255,255,255,.15);margin-top:2rem;padding-top:1.2rem;
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.85rem}
+
+/* Das Barrierefreiheits-Symbol steht auf hellen und auf dunklen Abschnitten.
+   Ein weißer Ring hebt es überall ab, ohne die gemeinsame Widget-Datei zu ändern. */
+.bf-knopf{
+  box-shadow:0 0 0 3px #fff, 0 10px 26px -8px rgba(19,32,56,.55)!important;
+}
+.bf-knopf:hover,.bf-knopf:focus-visible{
+  box-shadow:0 0 0 3px #fff, 0 14px 30px -8px rgba(19,32,56,.6)!important;
+}
+
+/* ------------------------------------------------------------------ Entwurfshinweise */
+.entwurf-band{background:var(--hinweis);border-bottom:2px solid var(--hinweis-rand);color:#4a3b00;
+  font-size:.9rem;padding:.6rem 0;text-align:center;font-weight:600}
+.offen{background:var(--hinweis);border-bottom:2px dotted var(--hinweis-rand);padding:0 .18em;
+  border-radius:3px;color:#4a3b00;font-weight:700}
+.hinweiskasten{background:var(--hinweis);border:1px solid var(--hinweis-rand);border-radius:var(--radius-klein);
+  padding:1rem 1.2rem;font-size:.92rem;color:#4a3b00;margin:0 0 1.5rem}
+.hinweiskasten p:last-child{margin-bottom:0}
+
+/* ------------------------------------------------------------------ Responsive */
+@media (max-width:1080px){
+  .raster-4{grid-template-columns:repeat(2,1fr)}
+  .ablauf{grid-template-columns:repeat(2,1fr)}
+  .anker-reihe{grid-template-columns:repeat(2,1fr)}
+  .team{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:1040px){
+  .kopf-nav{position:fixed;inset:88px 0 auto;flex-direction:column;align-items:stretch;gap:0;
+    background:#fff;border-bottom:1px solid var(--linie);padding:.5rem 1.25rem 1.25rem;
+    box-shadow:var(--schatten);display:none;z-index:49;max-height:calc(100vh - 88px);overflow-y:auto}
+  .kopf-nav.offen{display:flex}
+  .kopf-nav a{padding:.85rem 0;border-bottom:1px solid var(--linie);font-size:1.05rem}
+  .kopf-nav .knopf{margin-top:1rem;justify-content:center}
+  .kopf-nav .kopf-tel{border-bottom:none}
+  .burger{display:flex}
+  .hero-raster,.video-block,.region,.kontakt-raster,.gruen-block{grid-template-columns:1fr}
+  .video-block .video-text{order:2}
+  .raster-3{grid-template-columns:repeat(2,1fr)}
+  .zitate{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .marke img{height:42px}
+  .raster-2,.raster-3,.raster-4,.ablauf,.team{grid-template-columns:1fr}
+  .feld-paar{grid-template-columns:1fr}
+  .fuss-raster{grid-template-columns:1fr}
+  .anker-reihe{grid-template-columns:1fr}
+  .hero-knoepfe .knopf{width:100%}
+  section{padding:2.5rem 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;
+    scroll-behavior:auto!important}
+}
+@media print{
+  body>header,.entwurf-band,.abspielen{display:none}
+}

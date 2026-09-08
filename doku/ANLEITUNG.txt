@@ -1,0 +1,72 @@
+BÖSING DENTAL, LANDINGPAGE FÜR ZAHNARZTPRAXEN
+Entwurf von AO Consulting GmbH
+
+===============================================================
+1. NUR ANSEHEN, AUF JEDEM RECHNER
+===============================================================
+
+Ordner entpacken, dann index.html doppelklicken. Fertig.
+Es braucht kein Internet und kein Programm ausser einem Browser.
+Bilder und Videos liegen im Paket, die Videos starten nach Klick.
+
+Beim Öffnen per Doppelklick meldet die Browserkonsole einen CORS-Hinweis
+zu den Schriftdateien. Das ist eine Eigenart des file-Protokolls und über
+einen Webserver nicht vorhanden. Die Seite sieht trotzdem richtig aus.
+
+Wer es noch schneller will: schnellansicht/boesing-dental-landingpage.html
+ist eine einzige Datei mit allem darin, ausser den Videos.
+
+===============================================================
+2. AUF EINEN WEBSERVER LEGEN
+===============================================================
+
+Den INHALT dieses Ordners in das Web-Verzeichnis hochladen, also
+index.html, assets, fonts, img, videos, robots.txt und sitemap.xml.
+Die Ordnerstruktur muss erhalten bleiben, alle Pfade sind relativ.
+
+Vor dem Livegang bitte erledigen:
+
+a) Domain eintragen
+   - in index.html im Kopfbereich eine Zeile ergänzen:
+     <link rel="canonical" href="https://IHRE-DOMAIN/">
+   - in robots.txt und sitemap.xml DOMAIN-FOLGT.de ersetzen
+   - im Schema bei den Videos contentUrl und thumbnailUrl auf die
+     vollständige Adresse setzen
+
+b) Formular scharf schalten
+   Das Formular prüft im Entwurf nur die Pflichtfelder und zeigt die
+   Danke-Ansicht, es verschickt nichts. Für den Versand kommt ein
+   Skript beim Hoster dazu, zum Beispiel PHP, dazu ein Honeypot-Feld
+   gegen Spam. Empfänger und Betreff nach Absprache.
+
+c) HTTPS einschalten und auf https umleiten.
+
+d) Ordner unterlagen und schnellansicht NICHT mit hochladen,
+   die sind nur für den internen Gebrauch.
+
+===============================================================
+3. WAS DIE SEITE NICHT LÄDT
+===============================================================
+
+Keine Google Fonts, kein YouTube, keine Karte, kein Analysedienst,
+keine Cookies. Alle Dateien kommen vom eigenen Server. Deshalb braucht
+die Seite in dieser Fassung kein Einwilligungsbanner. Sobald ein Pixel,
+eine Karte oder ein fremdes Video dazukommt, muss das Banner mit.
+
+===============================================================
+4. TECHNISCHE DATEN
+===============================================================
+
+- statisches HTML, kein Baukasten, kein CMS
+- Schrift Plus Jakarta Sans, lokal ausgeliefert
+- Bilder als WebP mit JPG als Rückfall
+- Videos als MP4, H.264, laden erst nach Klick
+- Barrierefreiheits-Widget unten rechts, Einstellungen bleiben lokal
+- geprüft bei 1920, 1512, 1440, 1280, 1241, 1240, 1024, 768 und 390 px
+
+Fragen an rieger@ao-consult.de
+
+HINWEIS ZU DIESEM PAKET
+Die beiden Videos liegen hier in einer kleineren Fassung, 960 Pixel breit.
+Fuer den Livegang bitte das grosse Paket boesing-dental-website.zip nehmen,
+dort sind die Videos in 1080p.

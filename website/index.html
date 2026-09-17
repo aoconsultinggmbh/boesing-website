@@ -2,6 +2,12 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<!-- Google Search Console: Bestaetigung ueber HTML-Tag.
+     search.google.com/search-console -> Property hinzufuegen -> Praefix-URL ->
+     "HTML-Tag" -> Code kopieren, unten eintragen, Zeile aktiv schalten, dann
+     in der Search Console auf "Bestaetigen". Alternativ per DNS-Eintrag.
+<meta name="google-site-verification" content="HIER-CODE-EINTRAGEN">
+-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dentallabor Bingen für Praxen | Bösing Dental</title>
 <meta name="description" content="Dentallabor in Bingen am Rhein für Zahnarztpraxen: feste Ansprechpersonen, digitale Schnittstellen, Anprobe vor Ort. Erst ein Fall zum Kennenlernen, dann entscheiden Sie.">
@@ -18,6 +24,7 @@
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/schrift.css">
 <link rel="stylesheet" href="assets/stil.css">
+<link rel="stylesheet" href="assets/einwilligung.css">
 <link rel="stylesheet" href="assets/barrierefreiheit.css">
 <script type="application/ld+json">
 {
@@ -688,6 +695,7 @@
         <ul class="fuss-liste">
           <li><a href="https://boesing-dental.de/impressum/" rel="noopener">Impressum</a></li>
           <li><a href="https://boesing-dental.de/datenschutzhinweis/" rel="noopener">Datenschutz</a></li>
+          <li><button type="button" class="ein-ausloeser" data-einwilligung-oeffnen>Cookie-Einstellungen</button></li>
           <li><a href="https://boesing-dental.de/" rel="noopener">boesing-dental.de</a></li>
         </ul>
         <p style="margin-top:1rem">Mo–Fr 08:00–17:00 Uhr</p>
@@ -707,5 +715,8 @@
 
 <script src="assets/skript.js" defer></script>
 <script src="assets/barrierefreiheit.js" defer></script>
+<script src="assets/ao-konfiguration.js"></script>
+<script src="assets/einwilligung.js" defer></script>
+<script src="assets/messung.js" defer></script>
 </body>
 </html>

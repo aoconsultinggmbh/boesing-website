@@ -395,7 +395,16 @@
   var hatFreiwillige = KAT.some(function (k) { return !k.pflicht; });
 
   function start() {
-    if (!hatFreiwillige) { melden(); return; }
+    // Ohne freiwillige Kategorie gibt es nichts einzustellen: Auslöser in der
+    // Fußzeile ausblenden, damit kein Knopf dasteht, der nichts tut.
+    if (!hatFreiwillige) {
+      document.querySelectorAll('[data-einwilligung-oeffnen]').forEach(function (b) {
+        var huelle = b.closest('[data-einwilligung-huelle], li');
+        (huelle || b).style.display = 'none';
+      });
+      melden();
+      return;
+    }
     // Auslöser in der Fußzeile verkabeln
     document.querySelectorAll('[data-einwilligung-oeffnen]').forEach(function (b) {
       b.addEventListener('click', function (e) { e.preventDefault(); oeffne('details'); });

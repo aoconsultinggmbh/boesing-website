@@ -102,8 +102,8 @@ die Schriftdateien stellt, tausche ich sie aus.
 - Inhaltsbreite 1400 px statt 1220 px, Kopfzeile 1560 px.
 - FAQ „Nacharbeit" komplett entfernt (sichtbar und im Schema). Antwort zum Zahnersatz
   auf „von A bis Z" erweitert.
-- Drittes Zitat: Dr. Johannes Christmann, Zahnmedizin Ingelheim (von boesing-dental.de),
-  statt des zweiten Huber-Zitats.
+- Beide Huber-Zitate ersetzt durch Praxisstimmen von boesing-dental.de: Zahnzentrum
+  Messerschmidt und Dr. Johannes Christmann, Zahnmedizin Ingelheim. Huber spricht im Video.
 - Orte Worms, Limburg und Frankfurt aus der Regionsliste genommen.
 - Einwilligung von Sebastian Huber liegt vor, der gelbe Hinweis ist raus.
 

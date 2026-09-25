@@ -80,7 +80,7 @@ Seit dem 25. September 2026 nach dem Corporate Manual Rev. 1.1 von Bösing Denta
 | Blau HKS 47 (Marke, Flächen, Icons) | #00b6e8 |
 | Blau für große Überschriften | #0099c7 (HKS 47 leicht abgedunkelt, Kontrast 3:1) |
 | Blau für Links und kleine Texte | #007da3, Hover #005f7d (Kontrast 4,7:1) |
-| Knöpfe | Fläche HKS 47 #00b6e8 mit Dunkelblau als Schrift (6,3:1), Hover Dunkelblau mit Weiß |
+| Knöpfe | Fläche HKS 47 #00b6e8 mit weißer Schrift (Wunsch des Kunden, Kontrast 2,4:1), Hover Dunkelblau mit Weiß |
 | Kontaktabschnitt | Verlauf Dunkelblau nach HKS 47, Fuß Dunkelblau |
 | Orange HKS 7 (Akzent) | #f29400 |
 | Gelb HKS 3 (Akzent) | #ffd500 |

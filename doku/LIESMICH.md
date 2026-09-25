@@ -73,21 +73,39 @@ funktioniert ebenfalls, dann fehlen nur die Videos, und der Abspielknopf sagt da
 
 ## Farben und Schrift
 
-Aus dem bestehenden Auftritt abgeleitet:
+Seit dem 25. September 2026 nach dem Corporate Manual Rev. 1.1 von Bösing Dental:
 
 | Rolle | Wert |
 |---|---|
-| Cyan (Marke) | #29abe2 |
-| Cyan für Flächen und Knöpfe | #0e7ba8, dunkel #0a5f83 |
-| Orange (Akzent) | #f7941d |
-| Gelb (Akzent) | #ffd200 |
+| Blau HKS 47 (Marke, Flächen, Icons) | #00b6e8 |
+| Blau für große Überschriften | #0099c7 (HKS 47 leicht abgedunkelt, Kontrast 3:1) |
+| Blau für Links, Knöpfe, kleine Texte | #007da3, Hover #005f7d (Kontrast 4,7:1) |
+| Orange HKS 7 (Akzent) | #f29400 |
+| Gelb HKS 3 (Akzent) | #ffd500 |
+| Dunkelblau (Fließtext, Fuß) | #092738 |
 | Grün (Print Green) | #39b54a |
-| Text | #26343d |
 
-Das Marken-Cyan #29abe2 hat mit weißer Schrift zu wenig Kontrast, deshalb sind
-Knöpfe und Links im dunkleren Ton gehalten. Optisch bleibt es dieselbe Farbfamilie.
-Schrift ist Plus Jakarta Sans, lokal ausgeliefert. Wenn das Labor eine Hausschrift hat,
-tausche ich sie aus.
+Reines HKS 47 erreicht auf Weiß nur 2,4:1 Kontrast. Deshalb steht es auf Flächen,
+Icons, dem Bogen im Hero und den Schrittkreisen, während Text in abgedunkelten Tönen
+derselben Farbe gesetzt ist. Die Werte liegen als Variablen oben in `assets/stil.css`.
+Die Hausschrift AbsaraSansTF aus dem Manual ist eine Kaufschrift und liegt nicht vor,
+deshalb bleibt Plus Jakarta Sans (lokal ausgeliefert). Wenn das Labor die Lizenz und
+die Schriftdateien stellt, tausche ich sie aus.
+
+## Änderungen vom 25. September 2026 (Besprechung mit n.boesing)
+
+- Farben nach Corporate Manual, siehe oben.
+- Imagevideo steht jetzt oben rechts im Hero, das Begrüßungsbild ist in den Abschnitt
+  „Einblick" gewandert.
+- Hinweistext unter dem Luftbild entfernt.
+- Echtes Google-G bei der Bewertung (`img/google-g.svg`).
+- Inhaltsbreite 1400 px statt 1220 px, Kopfzeile 1560 px.
+- FAQ „Nacharbeit" komplett entfernt (sichtbar und im Schema). Antwort zum Zahnersatz
+  auf „von A bis Z" erweitert.
+- Drittes Zitat: Dr. Johannes Christmann, Zahnmedizin Ingelheim (von boesing-dental.de),
+  statt des zweiten Huber-Zitats.
+- Orte Worms, Limburg und Frankfurt aus der Regionsliste genommen.
+- Einwilligung von Sebastian Huber liegt vor, der gelbe Hinweis ist raus.
 
 ## Was noch fehlt
 
@@ -96,7 +114,7 @@ lange Kante 1800 px, mit Alt-Text, Breite und Höhe:
 
 | Nummer | Wo | Dateiname |
 |---|---|---|
-| 98 | Hero | begruessung-zahnarztpraxis-dentallabor-bingen |
+| 98 | Einblick (neben dem Text) | begruessung-zahnarztpraxis-dentallabor-bingen |
 | 8 | Festsitzender Zahnersatz | cad-konstruktion-zahnersatz-dentallabor-bingen |
 | 53 | Herausnehmbarer Zahnersatz | totalprothese-ausarbeitung-dentallabor-bingen |
 | 94 | SimplyDent | digitale-zahnersatz-konstruktion-dentallabor-bingen |

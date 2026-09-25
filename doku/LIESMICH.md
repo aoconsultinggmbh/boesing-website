@@ -79,7 +79,9 @@ Seit dem 25. September 2026 nach dem Corporate Manual Rev. 1.1 von Bösing Denta
 |---|---|
 | Blau HKS 47 (Marke, Flächen, Icons) | #00b6e8 |
 | Blau für große Überschriften | #0099c7 (HKS 47 leicht abgedunkelt, Kontrast 3:1) |
-| Blau für Links, Knöpfe, kleine Texte | #007da3, Hover #005f7d (Kontrast 4,7:1) |
+| Blau für Links und kleine Texte | #007da3, Hover #005f7d (Kontrast 4,7:1) |
+| Knöpfe | Fläche HKS 47 #00b6e8 mit Dunkelblau als Schrift (6,3:1), Hover Dunkelblau mit Weiß |
+| Kontaktabschnitt | Verlauf Dunkelblau nach HKS 47, Fuß Dunkelblau |
 | Orange HKS 7 (Akzent) | #f29400 |
 | Gelb HKS 3 (Akzent) | #ffd500 |
 | Dunkelblau (Fließtext, Fuß) | #092738 |
@@ -106,6 +108,7 @@ die Schriftdateien stellt, tausche ich sie aus.
   Messerschmidt und Dr. Johannes Christmann, Zahnmedizin Ingelheim. Huber spricht im Video.
 - Orte Worms, Limburg und Frankfurt aus der Regionsliste genommen.
 - Einwilligung von Sebastian Huber liegt vor, der gelbe Hinweis ist raus.
+- FAQ „Wo liegt das Labor" steht jetzt als letzte Frage, „feste Ansprechperson" ist die erste und aufgeklappt.
 
 ## Was noch fehlt
 

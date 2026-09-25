@@ -66,6 +66,7 @@ strong{font-weight:700}
 :focus-visible{outline:3px solid var(--cyan-dunkel);outline-offset:3px;border-radius:4px}
 :focus:not(:focus-visible){outline:none}
 .auf-dunkel :focus-visible{outline-color:#fff}
+.auf-dunkel .knopf-haupt:hover,.auf-dunkel .knopf-haupt:focus-visible{background:var(--gelb);color:var(--ink)}
 
 /* Sprunglinks */
 .sprung{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;
@@ -99,8 +100,8 @@ body>header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
 .kopf-nav{margin-left:auto;display:flex;align-items:center;gap:1.4rem}
 .kopf-nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:600;font-size:.98rem}
 .kopf-nav a:hover,.kopf-nav a:focus-visible{color:var(--cyan-dunkel)}
-.kopf-nav a.knopf-haupt{color:#fff}
-.kopf-nav a.knopf-haupt:hover,.kopf-nav a.knopf-haupt:focus-visible{color:#fff;background:var(--cyan-tief)}
+.kopf-nav a.knopf-haupt{color:var(--ink)}
+.kopf-nav a.knopf-haupt:hover,.kopf-nav a.knopf-haupt:focus-visible{color:#fff;background:var(--ink)}
 .kopf-tel{display:inline-flex;align-items:center;gap:.45rem;white-space:nowrap;font-weight:700;text-decoration:none}
 .burger{display:none;margin-left:auto;background:none;border:1px solid var(--linie);border-radius:12px;
   width:46px;height:42px;cursor:pointer;align-items:center;justify-content:center}
@@ -114,10 +115,10 @@ body>header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
 .knopf{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
   padding:.85rem 1.5rem;border-radius:999px;font-weight:800;text-decoration:none;border:2px solid transparent;
   cursor:pointer;font-size:1rem;font-family:inherit;transition:transform .15s ease,background .15s ease}
-.knopf-haupt{background:var(--cyan-dunkel);color:#fff}
-.knopf-haupt:hover,.knopf-haupt:focus-visible{background:var(--cyan-tief);color:#fff;transform:translateY(-1px)}
-.knopf-zweit{background:#fff;color:var(--cyan-tief);border-color:var(--cyan-dunkel)}
-.knopf-zweit:hover,.knopf-zweit:focus-visible{background:var(--cyan-dunkel);color:#fff}
+.knopf-haupt{background:var(--cyan);color:var(--ink)}
+.knopf-haupt:hover,.knopf-haupt:focus-visible{background:var(--ink);color:#fff;transform:translateY(-1px)}
+.knopf-zweit{background:#fff;color:var(--ink);border-color:var(--cyan)}
+.knopf-zweit:hover,.knopf-zweit:focus-visible{background:var(--cyan);color:var(--ink)}
 .knopf-hell{background:#fff;color:var(--cyan-tief)}
 .knopf-hell:hover,.knopf-hell:focus-visible{background:var(--gelb);color:var(--ink)}
 .knopf-klein{padding:.6rem 1.1rem;font-size:.94rem}
@@ -289,7 +290,7 @@ body>header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
 .faq .antwort p:last-child{margin-bottom:0}
 
 /* ------------------------------------------------------------------ Formular */
-.kontakt{background:linear-gradient(160deg,#092738 0%,#005f7d 45%,#007da3 75%,#00b6e8 100%);color:#fff}
+.kontakt{background:linear-gradient(160deg,#092738 0%,#092738 30%,#00b6e8 100%);color:#fff}
 .kontakt h2,.kontakt h3{color:#fff}
 .kontakt-raster{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:start}
 .kontakt-text p{color:rgba(255,255,255,.9)}

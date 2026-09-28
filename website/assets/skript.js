@@ -20,6 +20,35 @@
     window.addEventListener('resize', function(){ if (window.innerWidth > 1040) zu(); });
   }
 
+  /* ------------------------------------- stumme Vorschau in Schleife */
+  var ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sparen = navigator.connection && navigator.connection.saveData;
+  if (!ruhig && !sparen) {
+    Array.prototype.forEach.call(document.querySelectorAll('.video-rahmen[data-vorschau]'), function(rahmen){
+      var v = document.createElement('video');
+      v.className = 'video-vorschau';
+      v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
+      v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('aria-hidden','true');
+      v.setAttribute('preload','auto');
+      var basis = rahmen.getAttribute('data-vorschau');   /* ohne Endung, MP4 und WebM liegen daneben */
+      v.innerHTML = '<source src="' + basis + '.mp4" type="video/mp4">' +
+                    '<source src="' + basis + '.webm" type="video/webm">';
+      v.addEventListener('playing', function(){ v.classList.add('laeuft'); });
+      var knopf = rahmen.querySelector('.abspielen');
+      rahmen.insertBefore(v, knopf || null);
+      /* nur abspielen, solange der Rahmen sichtbar ist */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function(eintraege){
+          eintraege.forEach(function(e){
+            if (e.isIntersecting) { v.play().catch(function(){}); } else { v.pause(); }
+          });
+        }, { threshold: .25 }).observe(rahmen);
+      } else {
+        v.play().catch(function(){});
+      }
+    });
+  }
+
   /* ------------------------------------------------- Video erst auf Klick */
   var knoepfe = document.querySelectorAll('.abspielen');
   Array.prototype.forEach.call(knoepfe, function(btn){

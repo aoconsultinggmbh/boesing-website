@@ -110,6 +110,18 @@ die Schriftdateien stellt, tausche ich sie aus.
 - Einwilligung von Sebastian Huber liegt vor, der gelbe Hinweis ist raus.
 - FAQ „Wo liegt das Labor" steht jetzt als letzte Frage, „feste Ansprechperson" ist die erste und aufgeklappt.
 
+## Videovorschau in Schleife (28. September 2026)
+
+Über dem Standbild beider Videos läuft eine stumme Vorschau von drei Sekunden in
+Schleife, wie bei Wistia. Das sind eigene kleine Dateien in `videos/` (640 px breit, ohne Ton, je als MP4
+und WebM, 35 bis 150 KB), geschnitten aus den Originalen:
+`imagevideo-vorschau-dentallabor-bingen.mp4` (Sekunde 12,4 bis 15,4, Arbeitsplatz) und
+`testimonial-vorschau-zahnarztpraxis-dentallabor-bingen.mp4` (Sekunde 58,9 bis 61,9, Handschlag).
+Das echte Video startet weiter erst auf Klick. Die Vorschau läuft nur, solange der
+Rahmen im Bild ist, und gar nicht, wenn im System „Bewegung reduzieren" oder
+Datensparmodus aktiv ist. Alles liegt auf dem eigenen Server, kein Fremdaufruf.
+Andere Sekunden schneiden: `ffmpeg -ss START -t 3 -i original.mp4 -an -vf scale=640:-2 -crf 30 vorschau.mp4`.
+
 ## Was noch fehlt
 
 **Bilder, Stand jetzt.** Eingebaut und fertig aufbereitet als WebP plus JPG,

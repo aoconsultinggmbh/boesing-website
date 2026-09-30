@@ -111,7 +111,8 @@ die Schriftdateien stellt, tausche ich sie aus.
 - 30.09.2026: vier neue Leistungsbilder vom Labor, auf 16:10 zugeschnitten. Beim Vorher-Nachher-Bild
   ist der schwarze Mittelstreifen mit der Schrift entfernt, die Beschriftung „vorher/nachher" kommt
   jetzt als Marke aus dem HTML (lesbar auf jeder Größe). Die alten vier Kachelbilder sind aus
-  `website/img` genommen, sie liegen weiter im Git-Verlauf.
+  `website/img` genommen, sie liegen weiter im Git-Verlauf. Ebenso neu: Bild „Service in Ihrer Praxis"
+  (Farbnahme mit Farbmuster).
 - Einwilligung von Sebastian Huber liegt vor, der gelbe Hinweis ist raus.
 - FAQ „Wo liegt das Labor" steht jetzt als letzte Frage, „feste Ansprechperson" ist die erste und aufgeklappt.
 
@@ -139,7 +140,7 @@ lange Kante 1800 px, mit Alt-Text, Breite und Höhe:
 | neu | Herausnehmbarer Zahnersatz | stegprothese-implantate-dentallabor-bingen (30.09.2026) |
 | neu | SimplyDent | aligner-schiene-simplydent-dentallabor-bingen (30.09.2026) |
 | neu | Digitalisierung | 3d-druck-gesichtsmodell-dentallabor-bingen (30.09.2026) |
-| 41 | Service in Ihrer Praxis | abstimmung-zahnarztpraxis-dentallabor-bingen |
+| neu | Service in Ihrer Praxis | farbnahme-zahnfarbe-patientin-dentallabor-bingen (30.09.2026) |
 | Drohne_1 | Region | standort-luftbild-dentallabor-bingen-am-rhein |
 
 Bild 19 ist aufbereitet, aber **nicht** eingebaut. Es zeigt die Ausarbeitung in der

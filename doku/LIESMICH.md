@@ -106,7 +106,8 @@ die Schriftdateien stellt, tausche ich sie aus.
   auf „von A bis Z" erweitert.
 - Beide Huber-Zitate ersetzt durch Praxisstimmen von boesing-dental.de: Zahnzentrum
   Messerschmidt und Dr. Johannes Christmann, Zahnmedizin Ingelheim. Huber spricht im Video.
-- Orte Worms, Limburg und Frankfurt aus der Regionsliste genommen.
+- Orte Worms, Limburg und Frankfurt aus der Regionsliste genommen. Am 30.09.2026 zusätzlich
+  Idar-Oberstein und Koblenz raus, dafür Simmern, Rheinböllen, Wörrstadt und Emmelshausen rein.
 - Einwilligung von Sebastian Huber liegt vor, der gelbe Hinweis ist raus.
 - FAQ „Wo liegt das Labor" steht jetzt als letzte Frage, „feste Ansprechperson" ist die erste und aufgeklappt.
 

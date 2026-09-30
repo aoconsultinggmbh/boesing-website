@@ -108,6 +108,10 @@ die Schriftdateien stellt, tausche ich sie aus.
   Messerschmidt und Dr. Johannes Christmann, Zahnmedizin Ingelheim. Huber spricht im Video.
 - Orte Worms, Limburg und Frankfurt aus der Regionsliste genommen. Am 30.09.2026 zusätzlich
   Idar-Oberstein und Koblenz raus, dafür Simmern, Rheinböllen, Wörrstadt und Emmelshausen rein.
+- 30.09.2026: vier neue Leistungsbilder vom Labor, auf 16:10 zugeschnitten. Beim Vorher-Nachher-Bild
+  ist der schwarze Mittelstreifen mit der Schrift entfernt, die Beschriftung „vorher/nachher" kommt
+  jetzt als Marke aus dem HTML (lesbar auf jeder Größe). Die alten vier Kachelbilder sind aus
+  `website/img` genommen, sie liegen weiter im Git-Verlauf.
 - Einwilligung von Sebastian Huber liegt vor, der gelbe Hinweis ist raus.
 - FAQ „Wo liegt das Labor" steht jetzt als letzte Frage, „feste Ansprechperson" ist die erste und aufgeklappt.
 
@@ -131,10 +135,10 @@ lange Kante 1800 px, mit Alt-Text, Breite und Höhe:
 | Nummer | Wo | Dateiname |
 |---|---|---|
 | 98 | Einblick (neben dem Text) | begruessung-zahnarztpraxis-dentallabor-bingen |
-| 8 | Festsitzender Zahnersatz | cad-konstruktion-zahnersatz-dentallabor-bingen |
-| 53 | Herausnehmbarer Zahnersatz | totalprothese-ausarbeitung-dentallabor-bingen |
-| 94 | SimplyDent | digitale-zahnersatz-konstruktion-dentallabor-bingen |
-| 30 | Digitalisierung | cad-cam-fraesmaschine-zirkon-dentallabor-bingen |
+| neu | Festsitzender Zahnersatz | frontzaehne-vorher-nachher-dentallabor-bingen (30.09.2026) |
+| neu | Herausnehmbarer Zahnersatz | stegprothese-implantate-dentallabor-bingen (30.09.2026) |
+| neu | SimplyDent | aligner-schiene-simplydent-dentallabor-bingen (30.09.2026) |
+| neu | Digitalisierung | 3d-druck-gesichtsmodell-dentallabor-bingen (30.09.2026) |
 | 41 | Service in Ihrer Praxis | abstimmung-zahnarztpraxis-dentallabor-bingen |
 | Drohne_1 | Region | standort-luftbild-dentallabor-bingen-am-rhein |
 

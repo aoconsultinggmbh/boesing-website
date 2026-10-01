@@ -113,6 +113,7 @@ die Schriftdateien stellt, tausche ich sie aus.
   jetzt als Marke aus dem HTML (lesbar auf jeder Größe). Die alten vier Kachelbilder sind aus
   `website/img` genommen, sie liegen weiter im Git-Verlauf. Ebenso neu: Bild „Service in Ihrer Praxis"
   (Intraoralscan), im Kartentext ist der Intraoralscan ergänzt.
+- 01.10.2026: neues Bild „Schnarcherschienen" (Protrusionsschiene auf dem Gebissmodell).
 - Einwilligung von Sebastian Huber liegt vor, der gelbe Hinweis ist raus.
 - FAQ „Wo liegt das Labor" steht jetzt als letzte Frage, „feste Ansprechperson" ist die erste und aufgeklappt.
 
@@ -122,7 +123,7 @@ die Schriftdateien stellt, tausche ich sie aus.
 Schleife, wie bei Wistia. Das sind eigene kleine Dateien in `videos/` (640 px breit, ohne Ton, je als MP4
 und WebM, 35 bis 150 KB), geschnitten aus den Originalen:
 `imagevideo-vorschau-dentallabor-bingen.mp4` (Sekunde 12,4 bis 15,4, Arbeitsplatz) und
-`testimonial-vorschau-zahnarztpraxis-dentallabor-bingen.mp4` (Sekunde 58,9 bis 61,9, Handschlag).
+`testimonial-vorschau-zahnarztpraxis-dentallabor-bingen.mp4` (Sekunde 22,8 bis 25,8, Zahntechnikerin am Regal; der Handschlag bei 58,9 hatte den Untertitelfehler „Bösen Mental").
 Das echte Video startet weiter erst auf Klick. Die Vorschau läuft nur, solange der
 Rahmen im Bild ist, und gar nicht, wenn im System „Bewegung reduzieren" oder
 Datensparmodus aktiv ist. Alles liegt auf dem eigenen Server, kein Fremdaufruf.

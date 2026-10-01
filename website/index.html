@@ -23,7 +23,7 @@
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/schrift.css">
-<link rel="stylesheet" href="assets/stil.css?v=20260930a">
+<link rel="stylesheet" href="assets/stil.css?v=20261001a">
 <link rel="stylesheet" href="assets/einwilligung.css">
 <link rel="stylesheet" href="assets/barrierefreiheit.css">
 <script type="application/ld+json">
@@ -172,8 +172,6 @@
 <!-- Platz für Meta Pixel oder Consent-Werkzeug beim Livegang. Im Entwurf bewusst leer. -->
 </head>
 <body>
-
-<div class="entwurf-band">Entwurf von AO Consulting für Bösing Dental. Einzelne Bilder werden noch durch Aufnahmen aus dem Labor ersetzt.</div>
 
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 <a class="sprung" href="#anfrage">Zum Kontaktformular springen</a>
@@ -583,7 +581,10 @@
           </ul>
         </div>
         <div>
-          <form class="formular" id="anfrage-formular" novalidate>
+          <form class="formular" id="anfrage-formular" method="post" action="anfrage-senden.php" novalidate>
+            <!-- Schutz vor Robotern: unsichtbares Feld und Zeitstempel. Menschen sehen und füllen das nicht. -->
+            <div class="hp" aria-hidden="true"><label for="website">Webseite</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+            <input type="hidden" name="zeit" value="">
             <div class="feld-paar">
               <div class="feld">
                 <label for="praxis">Praxis <span class="pflicht" aria-hidden="true">*</span></label>
@@ -628,18 +629,21 @@
             </div>
             <div class="zustimmung zustimmung-block">
               <input type="checkbox" id="datenschutz" name="datenschutz" required>
-              <label for="datenschutz" style="font-weight:500">Ich habe die <a href="https://boesing-dental.de/datenschutzhinweis/" rel="noopener">Datenschutzhinweise</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. <span class="pflicht" aria-hidden="true">*</span>
+              <label for="datenschutz" style="font-weight:500">Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. <span class="pflicht" aria-hidden="true">*</span>
                 <span class="fehler">Ohne diese Zustimmung können wir die Anfrage nicht bearbeiten.</span>
               </label>
             </div>
             <button class="knopf knopf-haupt" type="submit" style="width:100%">Anfrage senden</button>
-            <p class="formular-fuss">Im Entwurf verschickt das Formular nichts. Es prüft die Pflichtfelder und zeigt die Danke-Ansicht.</p>
+            <p class="formular-fuss">Ihre Angaben werden verschlüsselt übertragen und nur zur Bearbeitung Ihrer Anfrage verwendet.</p>
           </form>
           <div class="formular" id="danke" hidden>
             <div class="danke">
               <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#39b54a" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l3 3 5-6"/></svg>
               <h3>Danke, Ihre Anfrage ist angekommen</h3>
               <p>Wir melden uns innerhalb von 48 Stunden bei Ihnen. Wenn es schneller gehen soll, erreichen Sie uns unter <a href="tel:+496721491680"><strong>06721 491680</strong></a>.</p>
+              <div class="ersatzweg" id="ersatzweg" hidden>
+                <p>Der direkte Versand hat gerade nicht geklappt. Ihr Mailprogramm sollte sich mit der fertigen Anfrage geöffnet haben. Falls nicht: <a href="#" id="mail-nochmal">E-Mail erneut öffnen</a> oder schreiben Sie an <a href="mailto:nboesing@boesing-dental.de">nboesing@boesing-dental.de</a>.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -680,8 +684,8 @@
       <div>
         <h3>Rechtliches</h3>
         <ul class="fuss-liste">
-          <li><a href="https://boesing-dental.de/impressum/" rel="noopener">Impressum</a></li>
-          <li><a href="https://boesing-dental.de/datenschutzhinweis/" rel="noopener">Datenschutz</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
           <li><button type="button" class="ein-ausloeser" data-einwilligung-oeffnen>Cookie-Einstellungen</button></li>
           <li><a href="https://boesing-dental.de/" rel="noopener">boesing-dental.de</a></li>
         </ul>
@@ -689,7 +693,7 @@
       </div>
     </div>
     <div class="fuss-unten">
-      <span>Entwurf, erstellt von AO Consulting GmbH. Inhalte noch nicht fachlich freigegeben.</span>
+      <span>Bösing Dental GmbH &amp; Co. KG, Bingen am Rhein</span>
       <span>Made in Germany, Zahntechnik aus Bingen am Rhein</span>
     </div>
   </div>
@@ -700,7 +704,7 @@
   <a class="knopf knopf-zweit" href="tel:+496721491680">Anrufen</a>
 </nav>
 
-<script src="assets/skript.js?v=20260928a" defer></script>
+<script src="assets/skript.js?v=20261001a" defer></script>
 <script src="assets/barrierefreiheit.js" defer></script>
 <script src="assets/ao-konfiguration.js"></script>
 <script src="assets/einwilligung.js" defer></script>

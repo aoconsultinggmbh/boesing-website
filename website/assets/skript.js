@@ -96,20 +96,76 @@
       if (wrap) wrap.classList.toggle('hat-fehler', !ok);
       return ok;
     };
+    /* Versand: erst an das Skript auf dem Server (anfrage-senden.php). Antwortet
+       der Server nicht (Vorschau auf GitHub, Versand noch nicht eingerichtet,
+       Störung), öffnet sich als Ersatzweg das Mailprogramm mit fertigem Text.
+       So geht keine Anfrage verloren. */
+    var EMPFAENGER = 'nboesing@boesing-dental.de';
+    var ENDPUNKT = 'anfrage-senden.php';
+    var zeitfeld = form.querySelector('input[name="zeit"]');
+    if (zeitfeld) zeitfeld.value = String(Math.floor(Date.now() / 1000));
+    var knopf = form.querySelector('button[type="submit"]');
+    var knopfText = knopf ? knopf.textContent : '';
+
+    var wert = function(name){ var f = form.querySelector('[name="' + name + '"]'); return f ? f.value.trim() : ''; };
+    var mailText = function(){
+      return 'Praxis: ' + wert('praxis') + '\n' +
+             'Ansprechperson: ' + wert('person') + '\n' +
+             'Ort: ' + wert('ort') + '\n' +
+             'Telefon: ' + wert('telefon') + '\n' +
+             'E-Mail: ' + wert('mail') + '\n' +
+             'Kontaktwunsch: ' + wert('wunsch') + '\n\n' +
+             'Nachricht:\n' + wert('nachricht') + '\n';
+    };
+    var oeffneMail = function(){
+      var betreff = 'Anfrage über die Praxis-Seite: ' + wert('praxis');
+      window.location.href = 'mailto:' + EMPFAENGER +
+        '?subject=' + encodeURIComponent(betreff) +
+        '&body=' + encodeURIComponent(mailText());
+    };
+    var zeigeDanke = function(ersatz){
+      if (!danke) return;
+      form.hidden = true;
+      danke.hidden = false;
+      var block = danke.querySelector('#ersatzweg');
+      if (block) block.hidden = !ersatz;
+      danke.setAttribute('tabindex','-1');
+      danke.focus();
+      var nochmal = danke.querySelector('#mail-nochmal');
+      if (nochmal) nochmal.onclick = function(ev){ ev.preventDefault(); oeffneMail(); };
+    };
+    var sperre = function(an){
+      if (!knopf) return;
+      knopf.disabled = an;
+      knopf.textContent = an ? 'Wird gesendet …' : knopfText;
+    };
+
     form.addEventListener('submit', function(e){
-      e.preventDefault();                 /* Entwurf verschickt nichts */
+      e.preventDefault();
       var pflicht = form.querySelectorAll('[required]');
       var alleOk = true, ersterFehler = null;
       Array.prototype.forEach.call(pflicht, function(feld){
         if (!pruefen(feld)) { alleOk = false; if (!ersterFehler) ersterFehler = feld; }
       });
       if (!alleOk) { if (ersterFehler) ersterFehler.focus(); return; }
-      if (danke) {
-        form.hidden = true;
-        danke.hidden = false;
-        danke.setAttribute('tabindex','-1');
-        danke.focus();
-      }
+      /* Honigtopf gefüllt: ein Roboter. Danke anzeigen, nichts verschicken. */
+      if (wert('website') !== '') { zeigeDanke(false); return; }
+
+      sperre(true);
+      var daten = new FormData(form);
+      var ersatzweg = function(){
+        sperre(false);
+        zeigeDanke(true);
+        window.setTimeout(oeffneMail, 500);
+      };
+      if (!window.fetch) { ersatzweg(); return; }
+      fetch(ENDPUNKT, { method: 'POST', body: daten })
+        .then(function(a){ return a.json()['catch'](function(){ return { ok: a.ok }; }); })
+        .then(function(a){
+          if (a && a.ok) { sperre(false); zeigeDanke(false); return; }
+          ersatzweg();
+        })
+        ['catch'](ersatzweg);
     });
     Array.prototype.forEach.call(form.querySelectorAll('[required]'), function(feld){
       feld.addEventListener('blur', function(){ pruefen(feld); });

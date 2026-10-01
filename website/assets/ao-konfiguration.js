@@ -20,7 +20,7 @@ window.AO_MESSUNG = {
 };
 
 window.AO_EINWILLIGUNG = {
-  datenschutz: 'https://boesing-dental.de/datenschutzhinweis/',
+  datenschutz: '/datenschutz.html',
   impressum: '/impressum.html',
   kategorien: [
     {
@@ -30,7 +30,7 @@ window.AO_EINWILLIGUNG = {
       pflicht: true,
       dienste: [{
         name: 'Einwilligungsspeicher',
-        anbieter: 'Bösing Dental GmbH & Co. KG [OFFEN: Anschrift aus dem Impressum ergaenzen]',
+        anbieter: 'Bösing Dental GmbH & Co. KG, Franz-Kirsten-Straße 1, 55411 Bingen am Rhein',
         zweck: 'Speichert, welchen Diensten Sie zugestimmt haben, damit Sie nicht bei jedem Aufruf erneut gefragt werden.',
         art: 'Lokaler Speicher im Browser, kein Cookie',
         dauer: '12 Monate'

@@ -36,9 +36,23 @@ Anleitung in leichter Sprache: `doku/ANLEITUNG.txt` und
 
 ## Vor dem Livegang zu erledigen
 
-- Domain eintragen (canonical im `<head>`, `robots.txt`, `sitemap.xml`,
-  Video-Schema) – steht überall noch `DOMAIN-FOLGT.de`
-- Formular scharf schalten: PHP-Skript beim Hoster, Empfängeradresse, Honeypot
-- Datenschutzhinweis: Das Formular und die Videos liegen auf dieser Seite.
-  Der verlinkte Hinweis der Hauptseite deckt das noch nicht ab.
-- `doku/htaccess-vorlage.txt` mit der echten Domain als `website/.htaccess` einsetzen
+Stand 01.10.2026. Erledigt ist: Entwurfs-Hinweise entfernt, eigene Seiten
+`impressum.html` und `datenschutz.html` (Angaben aus dem Impressum der
+Hauptseite, Hoster All-Inkl, Formular, Videos, Matomo), Versand-Skript
+`anfrage-senden.php` mit Honigtopf und Zeitsperre, Formular mit Ersatzweg
+(Mailprogramm), Empfänger `nboesing@boesing-dental.de`.
+
+Offen, weil die Domain noch nicht feststeht (`boesing.de` ist vergeben):
+
+- Domain eintragen: canonical im `<head>`, `robots.txt`, `sitemap.xml`,
+  Video-Schema, `.htaccess` (Umleitung freischalten) – steht überall noch
+  `DOMAIN-FOLGT.de`
+- `anfrage-senden.php`: `$von` auf ein echtes Postfach der Webseiten-Domain
+  setzen und das Postfach bei All-Inkl anlegen. Solange dort `DOMAIN-FOLGT`
+  steht, verschickt das Skript nichts (Ersatzweg greift).
+- Matomo: Seite unter statistik.ao-consult.de anlegen, Kennung in
+  `assets/statistik.js` eintragen, Skript auf allen drei Seiten nach
+  `messung.js` einbinden.
+- Impressum und Datenschutz dem Kunden zeigen und freigeben lassen
+  (Datenschutzbeauftragter Manfred Heckens steht wie auf der Hauptseite).
+- Testanfrage über den echten Server, Ankunft im Postfach prüfen.

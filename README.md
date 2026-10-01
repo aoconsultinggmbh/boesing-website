@@ -42,17 +42,19 @@ Hauptseite, Hoster All-Inkl, Formular, Videos, Matomo), Versand-Skript
 `anfrage-senden.php` mit Honigtopf und Zeitsperre, Formular mit Ersatzweg
 (Mailprogramm), Empfänger `nboesing@boesing-dental.de`.
 
-Offen, weil die Domain noch nicht feststeht (`boesing.de` ist vergeben):
+Domain: **www.boesing-dentallabor.de** (bei All-Inkl bestellt am 01.10.2026,
+Konto w02227af). Eingetragen in canonical, robots.txt, sitemap.xml,
+Video-Schema, .htaccess (Umleitung auf https und www, nur für diese Domain)
+und als Absender `anfrage@boesing-dentallabor.de` im Versand-Skript.
 
-- Domain eintragen: canonical im `<head>`, `robots.txt`, `sitemap.xml`,
-  Video-Schema, `.htaccess` (Umleitung freischalten) – steht überall noch
-  `DOMAIN-FOLGT.de`
-- `anfrage-senden.php`: `$von` auf ein echtes Postfach der Webseiten-Domain
-  setzen und das Postfach bei All-Inkl anlegen. Solange dort `DOMAIN-FOLGT`
-  steht, verschickt das Skript nichts (Ersatzweg greift).
+Noch offen:
+
+- Postfach `anfrage@boesing-dentallabor.de` bei All-Inkl anlegen.
+- SSL-Zertifikat für boesing-dentallabor.de und www getrennt.
+  **Erst danach** `live` setzen, sonst schickt die https-Umleitung Besucher
+  auf eine Adresse ohne Zertifikat.
 - Matomo: Seite unter statistik.ao-consult.de anlegen, Kennung in
   `assets/statistik.js` eintragen, Skript auf allen drei Seiten nach
   `messung.js` einbinden.
-- Impressum und Datenschutz dem Kunden zeigen und freigeben lassen
-  (Datenschutzbeauftragter Manfred Heckens steht wie auf der Hauptseite).
+- Impressum und Datenschutz dem Kunden zeigen und freigeben lassen.
 - Testanfrage über den echten Server, Ankunft im Postfach prüfen.

@@ -3,9 +3,7 @@
 # Auf der GitHub-Vorschau wird diese Datei ignoriert - sie wirkt erst,
 # wenn die Seite beim Hoster liegt.
 #
-# VOR DEM LIVEGANG: die Umleitung unten freischalten (Raute entfernen) und
-# DOMAIN durch die echte Domain ersetzen. Vorher bitte nicht - eine falsche
-# Umleitung macht die Seite unerreichbar.
+# Domain: www.boesing-dentallabor.de (bei All-Inkl registriert am 01.10.2026)
 # ---------------------------------------------------------------------------
 
 RewriteEngine On
@@ -20,10 +18,14 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} \.kasserver\.com$ [NC]
 RewriteRule ^ - [L]
 
-# --- Immer https und immer www (erst am Livegang-Tag freischalten) ---------
-# RewriteCond %{HTTPS} !=on [OR]
-# RewriteCond %{HTTP_HOST} !^www\. [NC]
-# RewriteRule ^(.*)$ https://www.DOMAIN/$1 [R=301,L]
+# --- Immer https und immer www -------------------------------------------
+# Greift nur fuer boesing-dentallabor.de. So stoert die Regel weder die
+# Uebergangsadresse des Hosters noch einen spaeteren Test, und fuer jede
+# andere Adresse (z. B. falls eine zweite Domain dazukommt) passiert nichts.
+RewriteCond %{HTTP_HOST} boesing-dentallabor\.de$ [NC]
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^boesing-dentallabor\.de$ [NC]
+RewriteRule ^(.*)$ https://www.boesing-dentallabor.de/$1 [R=301,L]
 
 ErrorDocument 404 /index.html
 

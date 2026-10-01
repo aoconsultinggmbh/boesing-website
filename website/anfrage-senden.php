@@ -26,7 +26,7 @@
    ============================================================================ */
 
 $an  = 'nboesing@boesing-dental.de';   // Empfaenger der Anfragen (abgestimmt am 01.10.2026)
-$von = 'anfrage@DOMAIN-FOLGT.de';      // VOR DEM LIVEGANG: Postfach auf der Webseiten-Domain
+$von = 'anfrage@boesing-dentallabor.de';   // Postfach bei All-Inkl, Konto w02227af
 
 header('Content-Type: application/json; charset=utf-8');
 

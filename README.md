@@ -50,9 +50,9 @@ und als Absender `anfrage@boesing-dentallabor.de` im Versand-Skript.
 Noch offen:
 
 - Postfach `anfrage@boesing-dentallabor.de` bei All-Inkl anlegen.
-- SSL-Zertifikat für boesing-dentallabor.de und www getrennt.
-  **Erst danach** `live` setzen, sonst schickt die https-Umleitung Besucher
-  auf eine Adresse ohne Zertifikat.
+- ~~SSL-Zertifikat~~ läuft für beide Namen (im Browser ohne Warnung geprüft).
+  `live` am 02.10.2026 auf den Stand von `main` gesetzt (Ovidiu), Upload erfolgreich,
+  Umleitung http und ohne www auf https://www.boesing-dentallabor.de geprüft.
 - Matomo: Seite unter statistik.ao-consult.de anlegen, Kennung in
   `assets/statistik.js` eintragen, Skript auf allen drei Seiten nach
   `messung.js` einbinden.

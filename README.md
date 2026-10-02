@@ -58,3 +58,15 @@ Noch offen:
   `messung.js` einbinden.
 - Impressum und Datenschutz dem Kunden zeigen und freigeben lassen.
 - Testanfrage über den echten Server, Ankunft im Postfach prüfen.
+
+## Meta-Pixel (02.10.2026)
+
+Pixel-ID `1019905141107119` (Werbekonto Bösing Dental) in `assets/ao-konfiguration.js`.
+Lädt nur nach Zustimmung im Einwilligungsfenster (Kategorie „Marketing"), vorher keine
+einzige Anfrage an Meta. Gesendet werden nur `PageView` und `Lead` (erfolgreich
+abgeschicktes Formular, ohne Inhalte); automatische Events sind im Code aus
+(`autoConfig false`). Im Events Manager ebenfalls aus lassen: „Events automatisch ohne
+Code tracken" und „Automatischer erweiterter Abgleich". Positivliste: boesing-dentallabor.de.
+Datenschutz: neuer Punkt 9 (Meta-Pixel), Punkt 10 (Cookies und Einwilligung) neu,
+Punkte 3 und 8 angepasst. Text des Einwilligungsfensters steht in `ao-konfiguration.js`
+(`text`, `fein`), Farben in `stil.css` (Abschnitt „Einwilligungsfenster in der CI").

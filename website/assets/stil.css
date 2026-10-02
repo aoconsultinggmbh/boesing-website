@@ -344,6 +344,23 @@ body>footer a:hover,body>footer a:focus-visible{color:var(--gelb)}
 .fuss-unten{border-top:1px solid rgba(255,255,255,.15);margin-top:2rem;padding-top:1.2rem;
   display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.85rem}
 
+/* ------------------------------------------------ Einwilligungsfenster in der CI
+   Die gemeinsame Datei einwilligung.css nimmt ihre Farben aus --navy und --coral.
+   Hier auf die Bösing-Farben gesetzt: Akzent HKS 47, Dunkelblau aus dem Manual.
+   Kleine Texte im abgedunkelten Blau, damit sie lesbar bleiben (4,7:1). */
+:root{
+  --navy:#092738;
+  --navy-deep:#061c29;
+  --navy-ink:#092738;
+  --coral:#00b6e8;
+  --coral-dark:#007da3;
+}
+.ein-hinter .ein-knopf--alle{box-shadow:0 12px 26px -14px rgba(0,125,163,.9),0 0 0 4px rgba(0,182,232,.18)}
+.ein-hinter .ein-kicker,.ein-hinter .ein-empfehlung{color:var(--cyan-dunkel)}
+.ein-hinter .ein-karte a:hover{color:var(--cyan-dunkel)}
+body>footer .ein-ausloeser{color:rgba(255,255,255,.85)}
+body>footer .ein-ausloeser:hover,body>footer .ein-ausloeser:focus-visible{color:var(--gelb)}
+
 /* Das Barrierefreiheits-Symbol steht auf hellen und auf dunklen Abschnitten.
    Ein weißer Ring hebt es überall ab, ohne die gemeinsame Widget-Datei zu ändern. */
 .bf-knopf{

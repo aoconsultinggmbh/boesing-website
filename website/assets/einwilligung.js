@@ -210,12 +210,14 @@
       '<div class="ein-koerper">' +
         '<span class="ein-kicker">Datenschutzeinstellungen</span>' +
         '<h2 id="ein-titel">Sie entscheiden, was geladen wird</h2>' +
-        '<p id="ein-text">Diese Website nutzt nur, was für den Betrieb nötig ist. Zusätzlich können wir ' +
+        // Text je Projekt einstellbar (window.AO_EINWILLIGUNG.text / .fein), denn
+        // er muss zu den tatsächlich eingesetzten Diensten passen.
+        '<p id="ein-text">' + (konf.text || ('Diese Website nutzt nur, was für den Betrieb nötig ist. Zusätzlich können wir ' +
           (namen || 'externe Inhalte') + ' einbinden. Diese Inhalte stammen von Google. ' +
-          'Beim Laden wird Ihre IP-Adresse an Google übertragen, deshalb fragen wir vorher.</p>' +
-        '<p class="ein-fein">Ihre Wahl gilt 12 Monate und lässt sich jederzeit über ' +
+          'Beim Laden wird Ihre IP-Adresse an Google übertragen, deshalb fragen wir vorher.')) + '</p>' +
+        '<p class="ein-fein">' + (konf.fein || ('Ihre Wahl gilt 12 Monate und lässt sich jederzeit über ' +
           '„Cookie-Einstellungen" in der Fußzeile ändern. Es werden keine Werbe- oder ' +
-          'Analysedienste eingesetzt. Mehr dazu in der ' +
+          'Analysedienste eingesetzt.')) + ' Mehr dazu in der ' +
           '<a href="' + LINK_DS + '">Datenschutzerklärung</a>.</p>' +
       '</div>' +
       '<div class="ein-fuss">' +

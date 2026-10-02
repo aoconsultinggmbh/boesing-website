@@ -162,7 +162,12 @@
       fetch(ENDPUNKT, { method: 'POST', body: daten })
         .then(function(a){ return a.json()['catch'](function(){ return { ok: a.ok }; }); })
         .then(function(a){
-          if (a && a.ok) { sperre(false); zeigeDanke(false); return; }
+          if (a && a.ok) {
+            sperre(false); zeigeDanke(false);
+            /* Für die Messung (messung.js): nur das Ereignis, keine Inhalte */
+            try { document.dispatchEvent(new CustomEvent('ao:anfrage-gesendet')); } catch (e) {}
+            return;
+          }
           ersatzweg();
         })
         ['catch'](ersatzweg);

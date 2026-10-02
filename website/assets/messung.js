@@ -88,9 +88,21 @@
     f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
     window._fbq = window._fbq || f;
     ladeSkript('https://connect.facebook.net/en_US/fbevents.js');
+    // Keine automatisch erkannten Events (Knopf-Texte, Seiteninhalte). Gesendet
+    // wird nur, was hier steht: Seitenaufruf und "Lead". So steht es auch in der
+    // Datenschutzerklaerung.
+    f('set', 'autoConfig', false, PIXEL);
     f('init', PIXEL);
     f('track', 'PageView');
   }
+
+  /* ---------- Erfolgreich abgeschickte Anfrage als "Lead" ---------- */
+  // skript.js meldet 'ao:anfrage-gesendet', wenn der Server den Versand
+  // bestaetigt hat. Ohne Zustimmung ist der Pixel nicht geladen, dann passiert
+  // hier nichts. Inhalte des Formulars werden nicht uebergeben.
+  document.addEventListener('ao:anfrage-gesendet', function () {
+    if (pixelGeladen && window.fbq) window.fbq('track', 'Lead');
+  });
 
   /* ---------- Auf die Entscheidung des Besuchers hören ---------- */
   function anwenden(kategorien) {

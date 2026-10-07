@@ -153,6 +153,20 @@
 
       sperre(true);
       var daten = new FormData(form);
+      /* Meta Conversions API: nur mit Zustimmung zu "Marketing". Dann gehen
+         eine zufaellige Ereignis-ID (damit Meta Pixel und Server nicht doppelt
+         zaehlt) und die Meta-Kennungen _fbp/_fbc mit. Ohne Zustimmung: nichts. */
+      var metaId = '';
+      try {
+        if (window.aoEinwilligung && window.aoEinwilligung.erlaubt('marketing')) {
+          metaId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+          var keks = function(n){ var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; };
+          daten.append('meta_ok', '1');
+          daten.append('meta_id', metaId);
+          daten.append('meta_fbp', keks('_fbp'));
+          daten.append('meta_fbc', keks('_fbc'));
+        }
+      } catch (e) {}
       var ersatzweg = function(){
         sperre(false);
         zeigeDanke(true);
@@ -165,7 +179,7 @@
           if (a && a.ok) {
             sperre(false); zeigeDanke(false);
             /* Für die Messung (messung.js): nur das Ereignis, keine Inhalte */
-            try { document.dispatchEvent(new CustomEvent('ao:anfrage-gesendet')); } catch (e) {}
+            try { document.dispatchEvent(new CustomEvent('ao:anfrage-gesendet', { detail: { id: metaId } })); } catch (e) {}
             return;
           }
           ersatzweg();

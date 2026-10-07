@@ -59,6 +59,26 @@ jobs:
         if: steps.pruefen.outputs.bereit == 'ja'
         uses: actions/checkout@v4
 
+      # Meta Conversions API: Zugriffsschluessel aus dem Secret META_CAPI_TOKEN
+      # in website/meta-capi.php schreiben. Die Datei entsteht nur hier im
+      # Ablauf, liegt nie im Projekt und ist per .htaccess gesperrt.
+      # Fehlt das Secret, entsteht keine Datei und es geht nichts an Meta.
+      # META_CAPI_TEST (freiwillig): Testcode aus dem Events Manager, nur zum
+      # Ausprobieren, danach das Secret wieder loeschen.
+      - name: Meta-Schluessel fuer den Server ablegen
+        if: steps.pruefen.outputs.bereit == 'ja'
+        env:
+          META_CAPI_TOKEN: ${{ secrets.META_CAPI_TOKEN }}
+          META_CAPI_TEST: ${{ secrets.META_CAPI_TEST }}
+        run: |
+          if [ -n "$META_CAPI_TOKEN" ]; then
+            php_wert() { printf "%s" "$1" | tr -cd 'A-Za-z0-9_-'; }
+            printf "<?php return array('token' => '%s', 'test' => '%s');\n" "$(php_wert "$META_CAPI_TOKEN")" "$(php_wert "$META_CAPI_TEST")" > website/meta-capi.php
+            echo "Meta-Schluessel abgelegt."
+          else
+            echo "::notice::Kein Secret META_CAPI_TOKEN, Conversions API bleibt aus."
+          fi
+
       - name: Upload-Werkzeug installieren (lftp)
         if: steps.pruefen.outputs.bereit == 'ja'
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp

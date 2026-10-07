@@ -100,8 +100,14 @@
   // skript.js meldet 'ao:anfrage-gesendet', wenn der Server den Versand
   // bestaetigt hat. Ohne Zustimmung ist der Pixel nicht geladen, dann passiert
   // hier nichts. Inhalte des Formulars werden nicht uebergeben.
-  document.addEventListener('ao:anfrage-gesendet', function () {
-    if (pixelGeladen && window.fbq) window.fbq('track', 'Lead');
+  // Dieselbe Ereignis-ID schickt auch der Server (Conversions API), so zaehlt
+  // Meta die Anfrage nur einmal.
+  document.addEventListener('ao:anfrage-gesendet', function (e) {
+    var id = e && e.detail && e.detail.id;
+    if (pixelGeladen && window.fbq) {
+      if (id) window.fbq('track', 'Lead', {}, { eventID: id });
+      else window.fbq('track', 'Lead');
+    }
   });
 
   /* ---------- Auf die Entscheidung des Besuchers hören ---------- */

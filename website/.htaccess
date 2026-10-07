@@ -29,6 +29,11 @@ RewriteRule ^(.*)$ https://www.boesing-dentallabor.de/$1 [R=301,L]
 
 ErrorDocument 404 /index.html
 
+# --- Schluesseldatei der Meta Conversions API nie ausliefern -------------
+<Files "meta-capi.php">
+  Require all denied
+</Files>
+
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"

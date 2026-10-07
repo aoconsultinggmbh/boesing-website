@@ -43,6 +43,62 @@ function einzeilig($wert) {
   return trim(preg_replace('/[\r\n]+/', ' ', $wert));
 }
 
+/* --- Meta Conversions API: Ereignis "Lead" vom Server an Meta ---------------
+   Nur wenn der Besucher im Einwilligungsfenster "Marketing" zugestimmt hat
+   (skript.js schickt dann meta_ok=1) UND der Zugriffsschluessel auf dem Server
+   liegt. Den Schluessel schreibt der Livegang-Ablauf aus dem GitHub-Secret
+   META_CAPI_TOKEN in die Datei meta-capi.php; er steht nie im Projekt.
+   Uebermittelt werden: Ereignisname, Zeitpunkt, Seitenadresse, Ereignis-ID,
+   IP-Adresse, Browserkennung und die Meta-Kennungen _fbp/_fbc.
+   KEINE Formularinhalte (kein Name, keine Mail, keine Telefonnummer).
+   Klappt der Aufruf nicht, merkt der Besucher nichts: die Anfrage ist da schon
+   verschickt. */
+function meta_lead() {
+  if (sauber('meta_ok') !== '1') return;
+  $datei = __DIR__ . '/meta-capi.php';
+  if (!is_file($datei)) return;
+  $konf = include $datei;
+  $token = is_array($konf) && isset($konf['token']) ? trim($konf['token']) : '';
+  if ($token === '' || !function_exists('curl_init')) return;
+
+  $pixel   = '1019905141107119';   // Pixel "Landeseite Kundengewinnung" (wie in ao-konfiguration.js)
+  $version = 'v24.0';              // Graph-API-Version; bei Fehlermeldungen von Meta hier erhoehen
+
+  $nutzer = array(
+    'client_ip_address' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '',
+    'client_user_agent' => isset($_SERVER['HTTP_USER_AGENT']) ? mb_substr($_SERVER['HTTP_USER_AGENT'], 0, 500) : '',
+  );
+  $fbp = einzeilig(sauber('meta_fbp'));
+  $fbc = einzeilig(sauber('meta_fbc'));
+  if (preg_match('/^fb\.\d\.\d+\.[A-Za-z0-9_.-]+$/', $fbp)) $nutzer['fbp'] = $fbp;
+  if (preg_match('/^fb\.\d\.\d+\.[A-Za-z0-9_.-]+$/', $fbc)) $nutzer['fbc'] = $fbc;
+
+  $id = preg_replace('/[^A-Za-z0-9_-]/', '', sauber('meta_id'));
+  $ereignis = array(
+    'event_name'       => 'Lead',
+    'event_time'       => time(),
+    'action_source'    => 'website',
+    'event_source_url' => 'https://www.boesing-dentallabor.de/',
+    'user_data'        => $nutzer,
+  );
+  if ($id !== '') $ereignis['event_id'] = $id;
+  $daten = array('data' => json_encode(array($ereignis)), 'access_token' => $token);
+  if (isset($konf['test']) && $konf['test'] !== '') $daten['test_event_code'] = $konf['test'];
+
+  $c = curl_init('https://graph.facebook.com/' . $version . '/' . $pixel . '/events');
+  curl_setopt_array($c, array(
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => http_build_query($daten),
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_CONNECTTIMEOUT => 3,
+    CURLOPT_TIMEOUT => 5,
+  ));
+  $antwort = curl_exec($c);
+  $code = curl_getinfo($c, CURLINFO_HTTP_CODE);
+  curl_close($c);
+  if ($code !== 200) { error_log('Meta CAPI: HTTP ' . $code . ' ' . mb_substr((string) $antwort, 0, 300)); }
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); ende(false, 'Nur POST.'); }
 
 /* --- Noch nicht scharf geschaltet: ehrlich Fehler melden, Ersatzweg greift --- */
@@ -89,6 +145,7 @@ $kopf .= "X-Mailer: PHP/" . phpversion();
 $betreff_kodiert = '=?UTF-8?B?' . base64_encode($betreff) . '?=';
 
 if (@mail($an, $betreff_kodiert, $text, $kopf, '-f' . $von)) {
+  meta_lead();
   ende(true);
 }
 http_response_code(500);

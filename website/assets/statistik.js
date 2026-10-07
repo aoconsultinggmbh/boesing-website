@@ -1,37 +1,15 @@
-/* ---------------------------------------------------------------------------
-   Besucherzaehlung mit Matomo - cookiefrei.
-
-   Warum ohne Einwilligungsfenster: Es wird nichts auf dem Geraet des Besuchers
-   gespeichert oder ausgelesen. Keine Cookies, kein Browser-Speicher. Die
-   IP-Adresse wird gekuerzt, bevor sie gespeichert wird, und "Do Not Track" wird
-   respektiert. Ausgewertet wird auf einem eigenen Server in Deutschland
-   (All-Inkl), es gehen keine Daten an Google, Meta oder in die USA.
-
-   Wer sich das Ergebnis ansieht: AO Consulting GmbH, statistik.ao-consult.de
-   --------------------------------------------------------------------------- */
+/* Besucherzählung mit Matomo, cookiefrei (Standard der AO Consulting).
+   Keine Cookies, kein Browser-Speicher, IP gekürzt, Do Not Track wird respektiert.
+   SEITE: Kennung aus statistik.ao-consult.de eintragen. Leer = keine Messung. */
 (function () {
   'use strict';
-
   var adresse = 'https://statistik.ao-consult.de/';
-  var seite   = 'SEITEN-ID-FOLGT';   // Kennung dieser Webseite in der Auswertung (wird beim Anlegen in Matomo vergeben)
-
+  var seite = '7';
+  if (!seite || /vorschau\.ao-consult\.de$|localhost|github\.io$/.test(location.hostname)) return;
   var _paq = (window._paq = window._paq || []);
-
-  // Keine Cookies setzen - doppelt abgesichert, der Server erzwingt es ebenfalls.
-  _paq.push(['disableCookies']);
-  // Besucher, die im Browser "Do Not Track" eingeschaltet haben, werden nicht gezaehlt.
-  _paq.push(['setDoNotTrack', true]);
-
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-
-  _paq.push(['setTrackerUrl', adresse + 'matomo.php']);
-  _paq.push(['setSiteId', seite]);
-
-  var d = document,
-      neu = d.createElement('script'),
-      erstes = d.getElementsByTagName('script')[0];
-  neu.async = true;
-  neu.src = adresse + 'matomo.js';
-  erstes.parentNode.insertBefore(neu, erstes);
+  _paq.push(['disableCookies']); _paq.push(['setDoNotTrack', true]);
+  _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']);
+  _paq.push(['setTrackerUrl', adresse + 'matomo.php']); _paq.push(['setSiteId', seite]);
+  var s = document.createElement('script'); s.async = true; s.src = adresse + 'matomo.js';
+  document.head.appendChild(s);
 })();

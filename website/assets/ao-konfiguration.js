@@ -22,7 +22,7 @@ window.AO_MESSUNG = {
 window.AO_EINWILLIGUNG = {
   datenschutz: '/datenschutz.html',
   // Haupttext des Fensters. Muss zu den eingesetzten Diensten passen (hier: nur Meta-Pixel).
-  text: 'Diese Website nutzt nur, was für den Betrieb nötig ist. Mit Ihrer Zustimmung laden wir zusätzlich den Meta-Pixel. Er misst, ob unsere Anzeigen bei Facebook und Instagram zu Anfragen führen. Dabei werden Daten wie Ihre IP-Adresse an Meta übertragen, auch in die USA. Deshalb fragen wir vorher.',
+  text: 'Diese Website nutzt nur, was für den Betrieb nötig ist, und zählt Besuche anonym und ohne Cookies. Mit Ihrer Zustimmung laden wir zusätzlich den Meta-Pixel. Er misst, ob unsere Anzeigen bei Facebook und Instagram zu Anfragen führen. Dabei werden Daten wie Ihre IP-Adresse an Meta übertragen, auch in die USA. Deshalb fragen wir vorher.',
   fein: 'Ohne Zustimmung wird keine Verbindung zu Meta aufgebaut. Ihre Wahl gilt 12 Monate und lässt sich jederzeit über „Cookie-Einstellungen" in der Fußzeile ändern.',
   impressum: '/impressum.html',
   kategorien: [

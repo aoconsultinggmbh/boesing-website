@@ -104,6 +104,68 @@ function meta_lead() {
   if ($code !== 200) { error_log('Meta CAPI: HTTP ' . $code . ' ' . mb_substr((string) $antwort, 0, 300)); }
 }
 
+/* --- Versand per SMTP mit Anmeldung am Postfach ----------------------------
+   Auf diesem Konto verschickt die PHP-Funktion mail() nichts, obwohl sie
+   Erfolg meldet (geprueft am 08.10.2026). Darum meldet sich das Skript wie
+   ein Mailprogramm am Postfach $von an und liefert die Mail direkt beim
+   Mailserver des Kontos ein. Das Passwort schreibt der Livegang-Ablauf aus
+   dem GitHub-Secret FORMULAR_SMTP_PASSWORT in die Datei smtp-zugang.php;
+   es steht nie im Projekt. Fehlt die Datei, bleibt es beim alten Weg mail().
+   Rueckgabe: '' bei Erfolg, sonst der Fehlertext (fuer das Fehlerprotokoll). */
+function smtp_senden($von, $an_liste, $betreff_kodiert, $text, $kopfzeilen) {
+  $datei = __DIR__ . '/smtp-zugang.php';
+  if (!is_file($datei)) return 'keine Zugangsdatei';
+  $konf = include $datei;
+  $passwort = is_array($konf) && isset($konf['passwort']) ? (string) $konf['passwort'] : '';
+  $server   = is_array($konf) && isset($konf['server']) && $konf['server'] !== '' ? $konf['server'] : 'w02227af.kasserver.com';
+  if ($passwort === '') return 'kein Passwort';
+
+  $fehler = 0; $meldung = '';
+  $fp = @stream_socket_client('ssl://' . $server . ':465', $fehler, $meldung, 10);
+  if (!$fp) return "Verbindung: $fehler $meldung";
+  stream_set_timeout($fp, 10);
+
+  $lies = function () use ($fp) {
+    $antwort = '';
+    while (($zeile = fgets($fp, 515)) !== false) {
+      $antwort .= $zeile;
+      if (strlen($zeile) < 4 || $zeile[3] !== '-') break;   /* letzte Zeile einer Mehrzeilen-Antwort */
+    }
+    return $antwort;
+  };
+  $sag = function ($befehl, $erwartet) use ($fp, $lies) {
+    fwrite($fp, $befehl . "\r\n");
+    $antwort = $lies();
+    if (strpos($antwort, (string) $erwartet) !== 0) throw new RuntimeException(trim($befehl === '' ? '' : strtok($befehl, ' ')) . ': ' . trim($antwort));
+    return $antwort;
+  };
+
+  try {
+    if (strpos($lies(), '220') !== 0) throw new RuntimeException('keine Begruessung');
+    $sag('EHLO www.boesing-dentallabor.de', 250);
+    $sag('AUTH LOGIN', 334);
+    $sag(base64_encode($von), 334);
+    $sag(base64_encode($passwort), 235);
+    $sag('MAIL FROM:<' . $von . '>', 250);
+    foreach ($an_liste as $empf) { $sag('RCPT TO:<' . $empf . '>', 250); }
+    $sag('DATA', 354);
+    $mail  = $kopfzeilen . "\r\n";
+    $mail .= 'Subject: ' . $betreff_kodiert . "\r\n";
+    $mail .= 'Date: ' . date('r') . "\r\n";
+    $mail .= 'Message-ID: <' . bin2hex(random_bytes(12)) . '@boesing-dentallabor.de>' . "\r\n";
+    $mail .= "MIME-Version: 1.0\r\n";
+    $mail .= "\r\n";
+    $mail .= preg_replace('/^\./m', '..', str_replace("\n", "\r\n", str_replace("\r\n", "\n", $text)));
+    $sag($mail . "\r\n.", 250);
+    fwrite($fp, "QUIT\r\n");
+    fclose($fp);
+    return '';
+  } catch (RuntimeException $e) {
+    @fclose($fp);
+    return $e->getMessage();
+  }
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); ende(false, 'Nur POST.'); }
 
 /* --- Noch nicht scharf geschaltet: ehrlich Fehler melden, Ersatzweg greift --- */
@@ -150,6 +212,23 @@ $kopf .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $kopf .= "X-Mailer: PHP/" . phpversion();
 
 $betreff_kodiert = '=?UTF-8?B?' . base64_encode($betreff) . '?=';
+
+/* Erst SMTP mit Anmeldung (zuverlaessig), nur ohne Zugangsdatei der alte Weg mail(). */
+$empfaenger = array($an);
+if ($cc !== '') { $empfaenger[] = $cc; }
+if ($kopie !== '' && $kopie !== $an) { $empfaenger[] = $kopie; }
+$kopf_smtp  = 'From: Praxis-Seite Boesing Dental <' . $von . ">\r\n";
+$kopf_smtp .= 'To: ' . $an . "\r\n";
+if ($cc !== '') { $kopf_smtp .= 'Cc: ' . $cc . "\r\n"; }
+$kopf_smtp .= 'Reply-To: ' . $person . ' <' . $email . ">\r\n";
+$kopf_smtp .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$kopf_smtp .= "Content-Transfer-Encoding: 8bit\r\n";
+$kopf_smtp .= 'X-Mailer: Praxis-Seite Boesing Dental';   /* Bcc absichtlich nicht im Kopf */
+
+$smtp_fehler = smtp_senden($von, $empfaenger, $betreff_kodiert, $text, $kopf_smtp);
+if ($smtp_fehler === '') { meta_lead(); ende(true); }
+if ($smtp_fehler !== 'keine Zugangsdatei') { error_log('Formular SMTP: ' . $smtp_fehler); }
+if (sauber('diag') === 'ao-diag-3f8e2c') { http_response_code(500); ende(false, 'SMTP: ' . $smtp_fehler); }   /* nur fuer die Fehlersuche durch die AO Consulting */
 
 if (@mail($an, $betreff_kodiert, $text, $kopf, '-f' . $von)) {
   meta_lead();

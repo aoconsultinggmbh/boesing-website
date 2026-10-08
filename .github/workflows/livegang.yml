@@ -79,6 +79,26 @@ jobs:
             echo "::notice::Kein Secret META_CAPI_TOKEN, Conversions API bleibt aus."
           fi
 
+      # Formular-Versand per SMTP: Passwort des Postfachs anfrage@boesing-dentallabor.de
+      # aus dem Secret FORMULAR_SMTP_PASSWORT in website/smtp-zugang.php schreiben.
+      # Die Datei entsteht nur hier, liegt nie im Projekt und ist per .htaccess gesperrt.
+      # Fehlt das Secret, entsteht keine Datei und das Skript nimmt den alten Weg mail().
+      - name: SMTP-Zugang fuer das Formular ablegen
+        if: steps.pruefen.outputs.bereit == 'ja'
+        env:
+          FORMULAR_SMTP_PASSWORT: ${{ secrets.FORMULAR_SMTP_PASSWORT }}
+        run: |
+          if [ -n "$FORMULAR_SMTP_PASSWORT" ]; then
+            python3 - <<'PY'
+          import os
+          pw = os.environ['FORMULAR_SMTP_PASSWORT'].replace('\\', '\\\\').replace("'", "\\'")
+          open('website/smtp-zugang.php', 'w').write("<?php return array('server' => 'w02227af.kasserver.com', 'passwort' => '" + pw + "');\n")
+          PY
+            echo "SMTP-Zugang abgelegt."
+          else
+            echo "::notice::Kein Secret FORMULAR_SMTP_PASSWORT, Formular nutzt mail()."
+          fi
+
       - name: Upload-Werkzeug installieren (lftp)
         if: steps.pruefen.outputs.bereit == 'ja'
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp

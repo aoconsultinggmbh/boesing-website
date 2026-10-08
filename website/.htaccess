@@ -33,6 +33,9 @@ ErrorDocument 404 /index.html
 <Files "meta-capi.php">
   Require all denied
 </Files>
+<Files "smtp-zugang.php">
+  Require all denied
+</Files>
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"

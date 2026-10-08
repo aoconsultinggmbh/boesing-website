@@ -57,7 +57,27 @@ Noch offen:
   `assets/statistik.js` eintragen, Skript auf allen drei Seiten nach
   `messung.js` einbinden.
 - Impressum und Datenschutz dem Kunden zeigen und freigeben lassen.
-- Testanfrage über den echten Server, Ankunft im Postfach prüfen.
+- ~~Testanfrage über den echten Server, Ankunft im Postfach prüfen.~~ Erledigt am 08.10.2026, siehe unten.
+
+## Kontaktformular: Stand 08.10.2026 (Awan)
+
+Meldung des Kunden: Anfragen kommen nicht an. Befund nach Tests über den echten
+Server: Das Skript verschickt korrekt, `mail()` funktioniert auf dem Konto.
+Mails an Microsoft-365-Postfächer (Kunde und AO Consulting) kommen aber mit
+rund 12 bis 15 Minuten Verzögerung an, bei einer so neuen Domain normal.
+Beim Kunden vermutlich im Junk-Ordner gelandet. SPF, DKIM
+(`kas202610011119._domainkey`) und DMARC sind korrekt gesetzt.
+
+Eingebaut in `anfrage-senden.php`:
+
+- Kopie (Cc) jeder Anfrage an tofik@ao-consult.de zur Kontrolle, nach zwei Wochen wieder entfernen.
+- Sicherheitskopie (Bcc) jeder Anfrage ins All-Inkl-Postfach anfrage@boesing-dentallabor.de
+  (Zugang per Webmail aus dem KAS, Benutzer m082660d). Dort geht nichts verloren.
+- Eingangsbestätigung an die anfragende Praxis (Absender anfrage@, Antworten gehen an nboesing@).
+- Versand per SMTP mit Anmeldung als Reserve: wird nur aktiv, wenn das GitHub-Secret
+  `FORMULAR_SMTP_PASSWORT` (Passwort des Postfachs anfrage@) angelegt ist. Aktuell aus, nicht nötig.
+
+Offen beim Kunden: Absender „Praxis-Seite Boesing Dental" in Outlook als sicher markieren.
 
 ## Meta-Pixel (02.10.2026)
 

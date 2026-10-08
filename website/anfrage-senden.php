@@ -166,6 +166,38 @@ function smtp_senden($von, $an_liste, $betreff_kodiert, $text, $kopfzeilen) {
   }
 }
 
+/* --- Eingangsbestaetigung an die anfragende Praxis ----------------------------
+   Geht nach erfolgreichem Versand der Anfrage an die im Formular angegebene
+   Adresse. Absender ist das Postfach $von, Antworten landen bei $an.
+   Klappt die Bestaetigung nicht, ist das kein Fehler fuer den Besucher: die
+   Anfrage selbst ist da schon verschickt. (Wunsch Awan, 08.10.2026) */
+function bestaetigung_senden($von, $an, $email, $person, $praxis, $ort, $telefon, $wunsch, $nachricht) {
+  $betreff = 'Ihre Anfrage bei Bösing Dental ist angekommen';
+  $text  = "Guten Tag " . $person . ",\n\n";
+  $text .= "vielen Dank für Ihre Anfrage über unsere Praxis-Seite. Sie ist bei uns angekommen.\n";
+  $text .= "Wir melden uns innerhalb von 48 Stunden bei Ihnen und klären am Telefon, ob wir zu Ihrer Praxis passen.\n\n";
+  $text .= "Ihre Angaben im Überblick:\n";
+  $text .= "Praxis:          $praxis\n";
+  $text .= "Ansprechperson:  $person\n";
+  $text .= "Ort:             $ort\n";
+  $text .= "Telefon:         $telefon\n";
+  $text .= "E-Mail:          $email\n";
+  if ($wunsch !== '') { $text .= "Kontaktwunsch:   $wunsch\n"; }
+  if ($nachricht !== '') { $text .= "\nIhre Nachricht:\n$nachricht\n"; }
+  $text .= "\nSie möchten nicht warten? Rufen Sie uns einfach an: 06721 491680\n\n";
+  $text .= "Herzliche Grüße\n";
+  $text .= "Ihr Team von Bösing Dental\n\n";
+  $text .= "Bösing Dental GmbH & Co. KG, Bingen am Rhein\n";
+  $text .= "www.boesing-dentallabor.de\n";
+
+  $kopf  = 'From: Boesing Dental <' . $von . ">\r\n";
+  $kopf .= 'Reply-To: Boesing Dental <' . $an . ">\r\n";
+  $kopf .= "Content-Type: text/plain; charset=UTF-8\r\n";
+  $kopf .= "Content-Transfer-Encoding: 8bit";
+  $betreff_kodiert = '=?UTF-8?B?' . base64_encode($betreff) . '?=';
+  if (!@mail($email, $betreff_kodiert, $text, $kopf, '-f' . $von)) { error_log('Formular: Eingangsbestaetigung an ' . $email . ' fehlgeschlagen'); }
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); ende(false, 'Nur POST.'); }
 
 /* --- Noch nicht scharf geschaltet: ehrlich Fehler melden, Ersatzweg greift --- */
@@ -226,11 +258,12 @@ $kopf_smtp .= "Content-Transfer-Encoding: 8bit\r\n";
 $kopf_smtp .= 'X-Mailer: Praxis-Seite Boesing Dental';   /* Bcc absichtlich nicht im Kopf */
 
 $smtp_fehler = smtp_senden($von, $empfaenger, $betreff_kodiert, $text, $kopf_smtp);
-if ($smtp_fehler === '') { meta_lead(); ende(true); }
+if ($smtp_fehler === '') { bestaetigung_senden($von, $an, $email, $person, $praxis, $ort, $telefon, $wunsch, $nachricht); meta_lead(); ende(true); }
 if ($smtp_fehler !== 'keine Zugangsdatei') { error_log('Formular SMTP: ' . $smtp_fehler); }
 if (sauber('diag') === 'ao-diag-3f8e2c') { http_response_code(500); ende(false, 'SMTP: ' . $smtp_fehler); }   /* nur fuer die Fehlersuche durch die AO Consulting */
 
 if (@mail($an, $betreff_kodiert, $text, $kopf, '-f' . $von)) {
+  bestaetigung_senden($von, $an, $email, $person, $praxis, $ort, $telefon, $wunsch, $nachricht);
   meta_lead();
   ende(true);
 }

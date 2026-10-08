@@ -27,6 +27,7 @@
 
 $an  = 'nboesing@boesing-dental.de';   // Empfaenger der Anfragen (abgestimmt am 01.10.2026)
 $von = 'anfrage@boesing-dentallabor.de';   // Postfach bei All-Inkl, Konto w02227af
+$cc    = 'tofik@ao-consult.de';            // Kopie an die AO Consulting (Fehlersuche Okt. 2026, auf Wunsch Awan)
 $kopie = 'anfrage@boesing-dentallabor.de';  // Sicherheitskopie jeder Anfrage (Bcc) ins eigene
                                             // Postfach auf demselben Server. Grund: Das Postfach des
                                             // Empfaengers liegt bei Microsoft 365, dort kamen Anfragen
@@ -143,6 +144,7 @@ $text .= "Antworten Sie einfach auf diese Mail, das geht direkt an die Praxis.\n
 
 $kopf  = 'From: Praxis-Seite Boesing Dental <' . $von . ">\r\n";   /* ohne Umlaut, sonst muesste der Name kodiert werden */
 $kopf .= 'Reply-To: ' . $person . ' <' . $email . ">\r\n";
+if ($cc !== '') { $kopf .= 'Cc: ' . $cc . "\r\n"; }
 if ($kopie !== '' && $kopie !== $an) { $kopf .= 'Bcc: ' . $kopie . "\r\n"; }
 $kopf .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $kopf .= "X-Mailer: PHP/" . phpversion();
